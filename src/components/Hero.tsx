@@ -1,17 +1,39 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 export function Hero() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const slides = [
+    "/hero-slide-1.jpg",
+    "/hero-slide-2.jpg",
+    "/hero-slide-3.jpg",
+    "/hero-slide-4.jpg",
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
-      {/* Background Image */}
+      {/* Background Image Carousel */}
       <div className="absolute inset-0 z-0 bg-black">
-        <img 
-          src="/hero-horses.jpg" 
-          alt="메인 배경 (말 달리는 역동적 이미지)"
-          className="w-full h-full object-cover opacity-[15%]"
-        />
+        {slides.map((src, idx) => (
+          <motion.img
+            key={src}
+            src={src}
+            alt={`슬라이드 배경 ${idx + 1}`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: currentSlide === idx ? 0.2 : 0 }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        ))}
         {/* Dark overlay for excellent text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black/90 pointer-events-none" />
         
