@@ -55,7 +55,7 @@ export function Profile() {
       start: 0,
       end: 4, 
       format: (val: number) => Math.round(val).toString(),
-      label: "『동두천 장미미용실』 등 4권의 베스트셀러 저서",
+      label: "베스트셀러 『동두천 장미미용실』 등 4권의 저서",
       icon: BookOpen
     },
     { 
