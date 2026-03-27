@@ -1,31 +1,73 @@
 "use client";
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { motion, useInView, animate } from "framer-motion";
 import { Clock, GraduationCap, BookOpen, Footprints, Brain } from "lucide-react";
+
+function AnimatedStat({ start = 0, end, format }: { start?: number, end: number, format: (val: number) => string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-50px" });
+
+  useEffect(() => {
+    if (inView && ref.current) {
+      const controls = animate(start, end, {
+        duration: 2.5,
+        ease: "easeOut",
+        onUpdate(val) {
+          if (ref.current) {
+            ref.current.textContent = format(val);
+          }
+        }
+      });
+      return () => controls.stop();
+    }
+  }, [inView, start, end, format]);
+
+  return <div ref={ref} className="text-3xl lg:text-4xl font-black text-brand mb-2 group-hover:scale-105 transition-transform origin-left">{format(start)}</div>;
+}
 
 export function Profile() {
   const stats = [
     { 
-      value: "IQ 84", 
+      start: 0,
+      end: 84, 
+      format: (val: number) => `IQ ${Math.round(val)}`,
       label: "IQ 84, 165cm, 성적 최하위 등급",
       icon: Brain
     },
     { 
-      value: "30+", 
+      start: 0,
+      end: 30, 
+      format: (val: number) => `${Math.round(val)}+`,
       label: "30년+ 광고기획 / 시각디자인 / AI마케팅",
       icon: Clock
     },
     { 
-      value: "2015.09.09", 
+      start: new Date("2000-01-01").getTime(),
+      end: new Date("2015-09-09").getTime(),
+      format: (val: number) => {
+        const d = new Date(val);
+        return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
+      },
       label: "국내 최초 고려대학교 AI온라인마케팅과정 개설",
       icon: GraduationCap
     },
     { 
-      value: "4", 
+      start: 0,
+      end: 4, 
+      format: (val: number) => Math.round(val).toString(),
       label: "『동두천 장미미용실』 등 4권의 베스트셀러 저서",
       icon: BookOpen
     },
     { 
-      value: "03:53:09", 
+      start: 0,
+      end: 13989, // 3 * 3600 + 53 * 60 + 9
+      format: (val: number) => {
+        const total = Math.round(val);
+        const h = Math.floor(total / 3600);
+        const m = Math.floor((total % 3600) / 60);
+        const s = total % 60;
+        return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+      },
       label: "2024 춘천마라톤 풀코스 완주 기록",
       icon: Footprints
     },
@@ -99,7 +141,7 @@ export function Profile() {
             {stats.map((stat, idx) => (
               <div key={idx} className="bg-[#111111] p-6 lg:p-8 rounded-2xl border border-white/5 hover:border-brand/40 transition-all group relative overflow-hidden flex items-center justify-between">
                 <div className="z-10 relative">
-                  <div className="text-3xl lg:text-4xl font-black text-brand mb-2 group-hover:scale-105 transition-transform origin-left">{stat.value}</div>
+                  <AnimatedStat start={stat.start} end={stat.end} format={stat.format} />
                   <div className="text-sm lg:text-base text-gray-400 font-medium break-keep leading-snug">{stat.label}</div>
                 </div>
                 {/* Right Icon - Orange Line Art */}
