@@ -36,7 +36,7 @@ export function Navbar() {
           <div className="flex-shrink-0 flex items-center">
             <a href="#" className="flex flex-col">
               <span className="text-lg md:text-xl font-bold text-white tracking-widest uppercase">
-                Stop Thinking, Start Action.
+                Stop Thinking, Start Acting.
               </span>
               <span className="text-xs md:text-sm text-brand font-medium">이영현 교수</span>
             </a>

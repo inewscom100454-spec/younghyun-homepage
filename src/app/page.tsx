@@ -72,7 +72,7 @@ export default function Home() {
           </div>
           
           <p className="text-gray-500 text-sm mb-2">
-            © {new Date().getFullYear()} 이영현 교수. All rights reserved. | Stop Thinking, Start Action.
+            © {new Date().getFullYear()} 이영현 교수. All rights reserved. | Stop Thinking, Start Acting.
           </p>
           <p className="text-gray-400 text-sm">
             LEE YOUNG-HYUN | 82-10-3767-2191 | newsad1@naver.com
