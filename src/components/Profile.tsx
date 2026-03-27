@@ -10,8 +10,8 @@ function AnimatedStat({ start = 0, end, format }: { start?: number, end: number,
   useEffect(() => {
     if (inView && ref.current) {
       const controls = animate(start, end, {
-        duration: 2.5,
-        ease: "easeOut",
+        duration: 3.5,
+        ease: [0.16, 1, 0.3, 1],
         onUpdate(val) {
           if (ref.current) {
             ref.current.textContent = format(val);
