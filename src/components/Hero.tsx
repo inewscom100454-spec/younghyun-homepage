@@ -64,7 +64,7 @@ export function Hero() {
               whileHover={{ x: [-8, 8, -6, 6, -4, 4, 0] }}
               transition={{ duration: 0.5 }}
             >
-              Stop Thinking,<br className="md:hidden" /> Start Action.
+              Stop Thinking,<br className="md:hidden" /> Start Acting.
             </motion.span>
           </h1>
           
