@@ -35,20 +35,20 @@ export function Hero() {
             세계 유일 실행부여가
           </motion.div>
           
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tight leading-none">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black text-white tracking-tight leading-none">
             <span className="block text-brand mb-3 sm:mb-5 text-xl sm:text-3xl md:text-4xl tracking-normal">생각은 멈추고, 행동을 시작하세요.</span>
             <motion.span 
-              className="inline-block cursor-default mt-2 mb-4 sm:mt-3 sm:mb-6 leading-[0.95]"
+              className="inline-block cursor-default mt-2 mb-4 sm:mt-3 sm:mb-6 leading-[1.2] text-3xl sm:text-4xl md:text-5xl lg:text-7xl break-keep"
               whileHover={{ x: [-8, 8, -6, 6, -4, 4, 0] }}
               transition={{ duration: 0.5 }}
             >
-              Stop Thinking,<br className="md:hidden" /> Start Action.
+              '꿈 깨! 실행 없이는<br className="md:hidden" /> 일장춘몽!!'
             </motion.span>
           </h1>
           
-          <p className="mt-4 sm:mt-6 text-lg sm:text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto font-light leading-relaxed">
-            30년 광고기획자이자 15년 온라인 마케터, AI 전문가,<br className="hidden md:block"/>
-            이영현 교수와 함께 당신의 삶과 비즈니스를 새롭게 시작하세요.
+          <p className="mt-4 sm:mt-6 text-lg sm:text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto font-light leading-relaxed break-keep">
+            30년 광고기획자, 15년 온라인 마케팅 강사, AI 전문가, 베스트셀러 저자,<br className="hidden md:block"/>
+            세계 유일 실행부여가 이영현 교수와 함께 당신의 삶과 비즈니스를 새롭게 시작하세요.
           </p>
 
           <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
