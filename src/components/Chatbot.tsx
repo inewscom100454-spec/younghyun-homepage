@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X, Send } from "lucide-react";
+import { MessageCircle, X, Send, Headset } from "lucide-react";
 
 export function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
@@ -118,9 +118,9 @@ export function Chatbot() {
                     <a href="https://blog.naver.com/newsad1/221441802457" target="_blank" rel="noopener noreferrer" className={btnClass}>
                       👤 이영현 교수는 누구?
                     </a>
-                    <button onClick={() => setActiveMenu('contact-info')} className={btnClass}>
-                      ✉️ 이영현 교수 직접 문의
-                    </button>
+                    <a href="http://pf.kakao.com/_QqEDxd/chat" target="_blank" rel="noopener noreferrer" className={btnClass}>
+                      💬 카카오톡 1:1 상담
+                    </a>
                   </motion.div>
                 )}
 
@@ -225,15 +225,9 @@ export function Chatbot() {
               animate={{ opacity: 1, rotate: 0, scale: 1 }}
               exit={{ opacity: 0, rotate: -90, scale: 0.5 }}
               transition={{ duration: 0.2 }}
-              className="w-[72px] h-[72px] relative flex text-brand"
+              className="w-[70px] h-[70px] bg-brand text-black rounded-full shadow-[0_0_25px_rgba(255,140,0,0.5)] flex items-center justify-center"
             >
-              <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full drop-shadow-[0_0_20px_rgba(255,140,0,0.4)]" fill="currentColor">
-                {/* 완벽하게 매끄러운 타원형 몸통 */}
-                <ellipse cx="50" cy="48" rx="48" ry="38" />
-                {/* 왼쪽 아래로 자연스럽게 빠지는 꼬리 */}
-                <path d="M 15 72 Q 8 85 2 95 Q 18 90 32 81 Z" />
-              </svg>
-              <span className="absolute left-1/2 top-[48%] -translate-x-1/2 -translate-y-1/2 z-10 font-black text-[38px] text-black pb-0.5">?</span>
+              <Headset size={36} strokeWidth={2.5} />
             </motion.div>
           )}
         </AnimatePresence>
