@@ -1,4 +1,4 @@
-import { Navbar } from "@/components/Navbar";
+
 import { Hero } from "@/components/Hero";
 import { Profile } from "@/components/Profile";
 import { Books } from "@/components/Books";
@@ -10,7 +10,6 @@ import { Chatbot } from "@/components/Chatbot";
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <Navbar />
       <Hero />
       <Profile />
       <Books />
