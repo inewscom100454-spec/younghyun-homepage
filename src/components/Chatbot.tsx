@@ -55,8 +55,8 @@ export function Chatbot() {
             {/* Header */}
             <div className="bg-[#111] p-4 flex justify-between items-center border-b border-brand/20">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full border border-brand/30 overflow-hidden shadow-[0_0_10px_rgba(255,140,0,0.4)]">
-                  <img src="/chatbot_avatar.png" alt="오드리" className="w-full h-full object-cover" />
+                <div className="w-12 h-12 rounded-full border border-brand/30 overflow-hidden shadow-[0_0_10px_rgba(255,140,0,0.4)]">
+                  <img src="/chatbot_avatar.png" alt="오드리" className="w-full h-full object-cover scale-[1.35] origin-[50%_30%]" />
                 </div>
                 <div>
                   <h3 className="text-white font-bold text-sm tracking-wide">오드리 (AI 비서)</h3>
@@ -78,8 +78,8 @@ export function Chatbot() {
             {/* Chat Area */}
             <div className="p-4 h-[420px] overflow-y-auto bg-black flex flex-col gap-4 custom-scrollbar">
               <div className="flex gap-3">
-                <div className="w-8 h-8 rounded-full border border-brand/30 overflow-hidden flex-shrink-0 mt-1">
-                  <img src="/chatbot_avatar.png" alt="오드리" className="w-full h-full object-cover" />
+                <div className="w-10 h-10 rounded-full border border-brand/30 overflow-hidden flex-shrink-0 mt-1">
+                  <img src="/chatbot_avatar.png" alt="오드리" className="w-full h-full object-cover scale-[1.35] origin-[50%_30%]" />
                 </div>
                 <div className="w-full">
                   <div className="bg-[#1a1a1a] text-gray-100 p-3.5 rounded-2xl rounded-tl-sm text-[14.5px] leading-relaxed border border-white/5 relative shadow-sm">
@@ -225,9 +225,9 @@ export function Chatbot() {
               animate={{ opacity: 1, rotate: 0, scale: 1 }}
               exit={{ opacity: 0, rotate: -90, scale: 0.5 }}
               transition={{ duration: 0.2 }}
-              className="w-[70px] h-[70px] bg-brand rounded-full shadow-[0_0_25px_rgba(255,140,0,0.5)] overflow-hidden border-2 border-brand"
+              className="w-[85px] h-[85px] bg-brand rounded-full shadow-[0_0_25px_rgba(255,140,0,0.5)] overflow-hidden border-2 border-brand"
             >
-              <img src="/chatbot_avatar.png" alt="챗봇 상담사" className="w-full h-full object-cover" />
+              <img src="/chatbot_avatar.png" alt="챗봇 상담사" className="w-full h-full object-cover scale-[1.35] origin-[50%_30%]" />
             </motion.div>
           )}
         </AnimatePresence>

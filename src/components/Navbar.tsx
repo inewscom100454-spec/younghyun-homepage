@@ -23,7 +23,7 @@ export function Navbar() {
     { name: "주요 저서", href: "/#books" },
     { name: "강의 현황", href: "/#class" },
     { name: "비즈니스", href: "/#business" },
-    { name: "보물 창고", href: "/knowledge" },
+    { name: "성공전략", href: "/knowledge" },
   ];
 
   return (
@@ -38,12 +38,9 @@ export function Navbar() {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <a href="#" className="flex flex-col">
               <span className="text-lg md:text-xl font-bold text-white tracking-widest uppercase truncate whitespace-nowrap">
                 LEE YOUNG-HYUN
               </span>
-              <span className="text-xs md:text-sm text-brand font-medium">이영현 교수</span>
-            </a>
           </div>
 
           {/* Desktop Menu */}
@@ -52,7 +49,7 @@ export function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className={`transition-colors text-sm font-medium tracking-wide whitespace-nowrap ${link.name === '보물 창고' ? 'text-brand font-bold border-brand/50 border px-3 py-1 rounded-full hover:bg-brand/10' : 'text-gray-300 hover:text-brand'}`}
+                className={`transition-colors text-sm font-medium tracking-wide whitespace-nowrap ${link.name === '성공전략' ? 'text-brand font-bold' : 'text-gray-300 hover:text-brand'}`}
               >
                 {link.name}
               </Link>
@@ -99,7 +96,7 @@ export function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className={`block px-3 py-3 rounded-md text-lg font-medium border-b border-white/5 ${link.name === '보물 창고' ? 'text-brand' : 'text-gray-200 hover:text-brand'}`}
+                className={`block px-3 py-3 rounded-md text-lg font-medium border-b border-white/5 ${link.name === '성공전략' ? 'text-brand font-bold' : 'text-gray-200 hover:text-brand'}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.name}
