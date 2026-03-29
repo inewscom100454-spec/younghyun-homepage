@@ -1,4 +1,5 @@
 import { SignUp } from "@clerk/nextjs";
+import Link from "next/link";
 
 export default function SignUpPage() {
   return (
@@ -41,7 +42,7 @@ export default function SignUpPage() {
         <div className="flex flex-col items-center lg:items-end">
           <SignUp />
           <p className="mt-4 text-[13px] text-gray-500 text-center lg:text-right max-w-[400px]">
-            회원가입 시 서비스 이용약관 및 개인정보 처리방침, 특별한 혜택 및 정보(마케팅) 수신에 동의하는 것으로 간주됩니다.
+            회원가입 시 <Link href="/terms" className="underline hover:text-brand transition-colors">서비스 이용약관</Link> 및 <Link href="/privacy" className="underline hover:text-brand transition-colors">개인정보 처리방침</Link>, 특별한 혜택 및 정보(마케팅) 수신에 동의하는 것으로 간주됩니다.
           </p>
         </div>
       </div>

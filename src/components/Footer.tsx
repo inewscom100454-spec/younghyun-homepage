@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function Footer() {
   return (
     <footer className="bg-black py-12 border-t border-white/5 mt-auto">
@@ -49,6 +51,12 @@ export function Footer() {
               <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
             </svg>
           </a>
+        </div>
+        
+        <div className="flex justify-center items-center gap-4 text-[13px] text-gray-500 mb-6">
+          <Link href="/terms" className="hover:text-brand transition-colors">이용약관</Link>
+          <span className="text-gray-800">|</span>
+          <Link href="/privacy" className="hover:text-brand transition-colors font-bold">개인정보처리방침</Link>
         </div>
         
         <p className="text-gray-500 text-sm mb-2">
