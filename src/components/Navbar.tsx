@@ -38,9 +38,11 @@ export function Navbar() {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
+            <Link href="/" className="flex flex-col hover:opacity-80 transition-opacity">
               <span className="text-lg md:text-xl font-bold text-white tracking-widest uppercase truncate whitespace-nowrap">
                 LEE YOUNG-HYUN
               </span>
+            </Link>
           </div>
 
           {/* Desktop Menu */}
