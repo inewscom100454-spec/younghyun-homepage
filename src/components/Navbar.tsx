@@ -21,9 +21,9 @@ export function Navbar() {
   const navLinks = [
     { name: "WHO'S LEE?", href: "/#profile" },
     { name: "주요 저서", href: "/#books" },
-    { name: "AI 마케팅 강의", href: "/#class" },
+    { name: "강의 현황", href: "/#class" },
     { name: "비즈니스", href: "/#business" },
-    { name: "당신의 지식 창고", href: "/knowledge" },
+    { name: "보물 창고", href: "/knowledge" },
   ];
 
   return (
@@ -39,8 +39,8 @@ export function Navbar() {
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
             <a href="#" className="flex flex-col">
-              <span className="text-lg md:text-xl font-bold text-white tracking-widest uppercase">
-                Stop Thinking, Start Acting.
+              <span className="text-lg md:text-xl font-bold text-white tracking-widest uppercase truncate whitespace-nowrap">
+                LEE YOUNG-HYUN
               </span>
               <span className="text-xs md:text-sm text-brand font-medium">이영현 교수</span>
             </a>
@@ -52,7 +52,7 @@ export function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className={`transition-colors text-sm font-medium tracking-wide ${link.name === '당신의 지식 창고' ? 'text-brand font-bold border-brand/50 border px-3 py-1 rounded-full hover:bg-brand/10' : 'text-gray-300 hover:text-brand'}`}
+                className={`transition-colors text-sm font-medium tracking-wide whitespace-nowrap ${link.name === '보물 창고' ? 'text-brand font-bold border-brand/50 border px-3 py-1 rounded-full hover:bg-brand/10' : 'text-gray-300 hover:text-brand'}`}
               >
                 {link.name}
               </Link>
@@ -60,8 +60,8 @@ export function Navbar() {
             
             {isLoaded && !userId && (
               <div className="flex gap-4 items-center pl-4 border-l border-white/10">
-                <Link href="/sign-in" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">로그인</Link>
-                <Link href="/sign-up" className="text-sm font-bold bg-white text-black px-4 py-2 rounded-full hover:bg-gray-200 transition-colors">회원가입</Link>
+                <Link href="/sign-in" className="text-sm font-medium text-gray-300 hover:text-white transition-colors whitespace-nowrap">로그인</Link>
+                <Link href="/sign-up" className="text-sm font-bold text-gray-300 hover:text-white transition-colors whitespace-nowrap">회원가입</Link>
               </div>
             )}
             {isLoaded && userId && (
@@ -72,7 +72,7 @@ export function Navbar() {
 
             <a 
               href="/#contact" 
-              className="ml-4 px-6 py-2.5 bg-brand text-black font-bold text-sm tracking-wide rounded-full hover:bg-brand-hover shadow-[0_0_15px_rgba(255,140,0,0.3)] hover:shadow-[0_0_25px_rgba(255,140,0,0.5)] transition-all transform hover:-translate-y-0.5"
+              className="ml-4 px-6 py-2.5 bg-brand text-black font-bold text-sm tracking-wide rounded-full hover:bg-brand-hover shadow-[0_0_15px_rgba(255,140,0,0.3)] hover:shadow-[0_0_25px_rgba(255,140,0,0.5)] transition-all transform hover:-translate-y-0.5 whitespace-nowrap"
             >
               특강 및 협업 제안
             </a>
@@ -99,7 +99,7 @@ export function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className={`block px-3 py-3 rounded-md text-lg font-medium border-b border-white/5 ${link.name === '당신의 지식 창고' ? 'text-brand' : 'text-gray-200 hover:text-brand'}`}
+                className={`block px-3 py-3 rounded-md text-lg font-medium border-b border-white/5 ${link.name === '보물 창고' ? 'text-brand' : 'text-gray-200 hover:text-brand'}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.name}
@@ -110,7 +110,7 @@ export function Navbar() {
               {isLoaded && !userId && (
                 <>
                   <Link href="/sign-in" className="block text-center px-3 py-3 rounded-xl border border-white/20 text-white font-medium hover:bg-white/5" onClick={() => setMobileMenuOpen(false)}>로그인</Link>
-                  <Link href="/sign-up" className="block text-center px-3 py-3 rounded-xl bg-white text-black font-bold hover:bg-gray-200" onClick={() => setMobileMenuOpen(false)}>회원가입</Link>
+                  <Link href="/sign-up" className="block text-center px-3 py-3 rounded-xl border border-white/20 text-white font-medium hover:bg-white/5" onClick={() => setMobileMenuOpen(false)}>회원가입</Link>
                 </>
               )}
               {isLoaded && userId && (
