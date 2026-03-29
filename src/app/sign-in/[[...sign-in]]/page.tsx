@@ -7,7 +7,7 @@ export default function SignInPage() {
         <h1 className="text-3xl font-bold mb-2">로그인</h1>
         <p className="text-gray-400">이영현 교수의 프리미엄 지식 창고에 오신 것을 환영합니다.</p>
       </div>
-      <div className="w-full max-w-md flex justify-center animate-fade-in-up">
+      <div className="w-full max-w-md flex justify-center">
         <SignIn />
       </div>
     </div>
