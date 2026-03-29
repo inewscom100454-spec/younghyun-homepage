@@ -38,8 +38,11 @@ export default function SignUpPage() {
         </div>
 
         {/* Clerk 회원가입 폼 */}
-        <div className="flex justify-center lg:justify-end animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+        <div className="flex flex-col items-center lg:items-end animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
           <SignUp />
+          <p className="mt-4 text-[13px] text-gray-500 text-center lg:text-right max-w-[400px]">
+            회원가입 시 서비스 이용약관 및 개인정보 처리방침, 특별한 혜택 및 정보(마케팅) 수신에 동의하는 것으로 간주됩니다.
+          </p>
         </div>
       </div>
     </div>
