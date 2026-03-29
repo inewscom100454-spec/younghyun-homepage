@@ -2,10 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { useAuth, UserButton } from "@clerk/nextjs";
+import Link from "next/link";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { isLoaded, userId } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,10 +19,11 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "WHO'S LEE?", href: "#profile" },
-    { name: "주요 저서", href: "#books" },
-    { name: "AI 마케팅 강의", href: "#class" },
-    { name: "비즈니스", href: "#business" },
+    { name: "WHO'S LEE?", href: "/#profile" },
+    { name: "주요 저서", href: "/#books" },
+    { name: "AI 마케팅 강의", href: "/#class" },
+    { name: "비즈니스", href: "/#business" },
+    { name: "당신의 지식 창고", href: "/knowledge" },
   ];
 
   return (
@@ -43,18 +47,31 @@ export function Navbar() {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-8 items-center">
+          <div className="hidden md:flex space-x-6 lg:space-x-8 items-center">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
-                className="text-gray-300 hover:text-brand transition-colors text-sm font-medium tracking-wide"
+                className={`transition-colors text-sm font-medium tracking-wide ${link.name === '당신의 지식 창고' ? 'text-brand font-bold border-brand/50 border px-3 py-1 rounded-full hover:bg-brand/10' : 'text-gray-300 hover:text-brand'}`}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
+            
+            {isLoaded && !userId && (
+              <div className="flex gap-4 items-center pl-4 border-l border-white/10">
+                <Link href="/sign-in" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">로그인</Link>
+                <Link href="/sign-up" className="text-sm font-bold bg-white text-black px-4 py-2 rounded-full hover:bg-gray-200 transition-colors">회원가입</Link>
+              </div>
+            )}
+            {isLoaded && userId && (
+              <div className="pl-4 border-l border-white/10 flex items-center">
+                <UserButton appearance={{ elements: { userButtonAvatarBox: "w-9 h-9 border-2 border-brand" } }} />
+              </div>
+            )}
+
             <a 
-              href="#contact" 
+              href="/#contact" 
               className="ml-4 px-6 py-2.5 bg-brand text-black font-bold text-sm tracking-wide rounded-full hover:bg-brand-hover shadow-[0_0_15px_rgba(255,140,0,0.3)] hover:shadow-[0_0_25px_rgba(255,140,0,0.5)] transition-all transform hover:-translate-y-0.5"
             >
               특강 및 협업 제안
@@ -79,17 +96,33 @@ export function Navbar() {
         <div className="md:hidden bg-black/95 backdrop-blur-xl border-b border-white/10 absolute w-full left-0 top-full shadow-2xl">
           <div className="px-4 py-6 space-y-4">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
-                className="text-gray-200 hover:text-brand block px-3 py-3 rounded-md text-lg font-medium border-b border-white/5"
+                className={`block px-3 py-3 rounded-md text-lg font-medium border-b border-white/5 ${link.name === '당신의 지식 창고' ? 'text-brand' : 'text-gray-200 hover:text-brand'}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
+            
+            <div className="pt-4 pb-2 flex flex-col gap-3">
+              {isLoaded && !userId && (
+                <>
+                  <Link href="/sign-in" className="block text-center px-3 py-3 rounded-xl border border-white/20 text-white font-medium hover:bg-white/5" onClick={() => setMobileMenuOpen(false)}>로그인</Link>
+                  <Link href="/sign-up" className="block text-center px-3 py-3 rounded-xl bg-white text-black font-bold hover:bg-gray-200" onClick={() => setMobileMenuOpen(false)}>회원가입</Link>
+                </>
+              )}
+              {isLoaded && userId && (
+                <div className="flex justify-center items-center py-2 gap-4 bg-white/5 rounded-xl">
+                  <span className="text-gray-300 font-medium">프로필 관리</span>
+                  <UserButton appearance={{ elements: { userButtonAvatarBox: "w-10 h-10 border-2 border-brand" } }} />
+                </div>
+              )}
+            </div>
+
             <a 
-              href="#contact" 
+              href="/#contact" 
               className="text-black bg-brand hover:bg-brand-hover block px-3 py-4 mt-4 rounded-xl text-lg font-bold text-center shadow-[0_0_15px_rgba(255,140,0,0.3)] transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
