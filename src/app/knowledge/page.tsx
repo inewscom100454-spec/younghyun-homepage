@@ -9,13 +9,15 @@ export default async function KnowledgePage() {
   }
 
   return (
-    <div className="min-h-screen pt-32 pb-20 bg-black text-white px-4">
-      <div className="max-w-4xl mx-auto animate-fade-in-up">
+    <div className="min-h-[80vh] pt-48 pb-20 bg-black text-white px-4 flex flex-col items-center">
+      <div className="w-full max-w-3xl animate-fade-in-up text-left">
         
-        <div className="bg-brand/10 border border-brand/20 p-8 rounded-3xl mb-12">
-          <h1 className="text-3xl md:text-5xl font-bold mb-4">당신의 비밀노트</h1>
-          <p className="text-xl text-gray-300">
-            환영합니다, {user.firstName || "회원"}님! 오직 회원분들에게만 제공되는 프리미엄 마케팅 인사이트 공간입니다.
+        <div className="mb-10 text-center w-full">
+          <h1 className="text-3xl font-bold mb-4">성공의 비밀노트</h1>
+          <hr className="border-white/20 mb-6" />
+          <p className="text-gray-400 leading-relaxed text-[15px] break-keep">
+            환영합니다, <strong className="text-white">{user.firstName || "회원"}</strong>님!<br />
+            오직 회원분들에게만 제공되는 프리미엄 마케팅 인사이트 공간입니다.
           </p>
         </div>
 
