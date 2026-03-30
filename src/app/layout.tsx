@@ -5,6 +5,7 @@ import { dark } from "@clerk/themes";
 import { koKR } from "@clerk/localizations";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { Chatbot } from "@/components/Chatbot";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -56,6 +57,7 @@ export default function RootLayout({
             {children}
           </div>
           <Footer />
+          <Chatbot />
         </body>
       </html>
     </ClerkProvider>

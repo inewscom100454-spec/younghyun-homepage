@@ -23,7 +23,7 @@ export function Navbar() {
     { name: "주요 저서", href: "/#books" },
     { name: "강의 현황", href: "/#class" },
     { name: "비즈니스", href: "/#business" },
-    { name: "성공전략", href: "/knowledge" },
+    { name: "비밀노트", href: "/knowledge" },
   ];
 
   return (
@@ -51,8 +51,14 @@ export function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className={`transition-colors text-sm font-medium tracking-wide whitespace-nowrap ${link.name === '성공전략' ? 'text-brand font-bold' : 'text-gray-300 hover:text-brand'}`}
+                className={`flex items-center gap-1 transition-colors text-sm font-medium tracking-wide whitespace-nowrap ${link.name === '비밀노트' ? 'text-brand font-bold' : 'text-gray-300 hover:text-brand'}`}
               >
+                {link.name === '비밀노트' && (
+                  <svg className="w-3.5 h-3.5 mb-[2px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0110 0v4"></path>
+                  </svg>
+                )}
                 {link.name}
               </Link>
             ))}
@@ -98,9 +104,15 @@ export function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className={`block px-3 py-3 rounded-md text-lg font-medium border-b border-white/5 ${link.name === '성공전략' ? 'text-brand font-bold' : 'text-gray-200 hover:text-brand'}`}
+                className={`flex items-center gap-2 px-3 py-3 rounded-md text-lg font-medium border-b border-white/5 ${link.name === '비밀노트' ? 'text-brand font-bold' : 'text-gray-200 hover:text-brand'}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
+                {link.name === '비밀노트' && (
+                  <svg className="w-4 h-4 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0110 0v4"></path>
+                  </svg>
+                )}
                 {link.name}
               </Link>
             ))}

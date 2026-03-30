@@ -13,7 +13,7 @@ export default async function KnowledgePage() {
       <div className="max-w-4xl mx-auto animate-fade-in-up">
         
         <div className="bg-brand/10 border border-brand/20 p-8 rounded-3xl mb-12">
-          <h1 className="text-3xl md:text-5xl font-bold mb-4">당신의 지식 창고</h1>
+          <h1 className="text-3xl md:text-5xl font-bold mb-4">당신의 비밀노트</h1>
           <p className="text-xl text-gray-300">
             환영합니다, {user.firstName || "회원"}님! 오직 회원분들에게만 제공되는 프리미엄 마케팅 인사이트 공간입니다.
           </p>

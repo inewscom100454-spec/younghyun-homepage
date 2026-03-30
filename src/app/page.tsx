@@ -5,7 +5,6 @@ import { Books } from "@/components/Books";
 import { Class } from "@/components/Class";
 import { Business } from "@/components/Business";
 import { Contact } from "@/components/Contact";
-import { Chatbot } from "@/components/Chatbot";
 
 export default function Home() {
   return (
@@ -16,7 +15,6 @@ export default function Home() {
       <Class />
       <Business />
       <Contact />
-      <Chatbot />
     </main>
   );
 }
