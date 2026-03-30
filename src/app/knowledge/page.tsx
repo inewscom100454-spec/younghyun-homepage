@@ -34,13 +34,12 @@ export default async function KnowledgePage() {
           </div>
 
           <div className="bg-white/5 border border-white/10 p-6 rounded-2xl">
-            <h2 className="text-2xl font-bold mb-3 text-brand">이달의 추천 도서 및 리뷰</h2>
+            <h2 className="text-2xl font-bold mb-3 text-brand">단 한 문장으로 반백년의 삶을 반성하게 한 책!</h2>
             <p className="text-gray-400 mb-4 text-sm">2026. 03. 15</p>
             <p className="text-gray-300 leading-relaxed">
-              이번달 추천 도서는 베스트셀러 『동두천 장미미용실』입니다. 스토리텔링이 비즈니스에 어떻게 
-              적용될 수 있는지에 대한 실전 가이드를 요약해 보았습니다...
+              카말라라는 유명한 기생인 한 여인을 만나고 사랑에 빠진다. 만난 첫날, 시 한수 읊어주고 입맞춤에 성공하는 싯다르타. 거지와 다름없는 싯다르타. 그러나...
             </p>
-            <button className="mt-4 text-brand font-medium hover:underline text-sm">본문 계속 읽기 &rarr;</button>
+            <a href="https://blog.naver.com/newsad1/221663359001" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 text-brand font-medium hover:underline text-sm">본문 계속 읽기 &rarr;</a>
           </div>
         </div>
 
