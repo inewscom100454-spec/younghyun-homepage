@@ -24,6 +24,15 @@ export default async function KnowledgePage() {
 
         <div className="space-y-8">
           <KnowledgeCard 
+            id="post-reading-between-lines"
+            title="행간 뜻 알아차리고 인간관계 성공하는 법"
+            date="2026. 03. 30"
+            initialViews={999}
+            previewText="굳이 내 직업이 아니어도 대면보다 소셜미디어를 더 많이 접하는 세상인 만큼, 행간을 읽는 능력은 정말 중요하다. ..."
+            link="https://blog.naver.com/newsad1/223022811666"
+          />
+
+          <KnowledgeCard 
             id="post-success-law"
             title="무조건 성공하는 법칙?"
             date="2026. 03. 30"
