@@ -24,6 +24,15 @@ export default async function KnowledgePage() {
 
         <div className="space-y-8">
           <KnowledgeCard 
+            id="post-success-law"
+            title="무조건 성공하는 법칙?"
+            date="2026. 03. 30"
+            initialViews={999}
+            previewText="얼마 전 로버트 치알디니의 설득의 심리학 리뷰를 하면서 사회적 증거의 법칙에 대해 포스팅한 적이 있다. '개인은 대중의 선택을 의심 없이 따른다'라는 법칙이다."
+            link="https://blog.naver.com/newsad1/222911057847"
+          />
+
+          <KnowledgeCard 
             id="post-human-relations"
             title="각종 모임에서 인간관계 못 맺고 좋은 인맥 못 만드는 10가지 이유"
             date="2026. 03. 29"
