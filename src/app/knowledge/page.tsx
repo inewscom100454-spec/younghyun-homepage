@@ -27,6 +27,7 @@ export default async function KnowledgePage() {
             <h2 className="text-2xl font-bold mb-3 text-brand break-keep">각종 모임에서 인간관계 못 맺고 좋은 인맥 못 만드는 10가지 이유</h2>
             <div className="flex items-center gap-3 text-gray-400 mb-4 text-sm">
               <span>2026. 03. 29</span>
+              <span className="text-white/20">|</span>
               <div className="flex items-center gap-1.5" title="조회수">
                 <Eye size={14} />
                 <span>999</span>
@@ -42,6 +43,7 @@ export default async function KnowledgePage() {
             <h2 className="text-2xl font-bold mb-3 text-brand">단 한 문장으로 반백년의 삶을 반성하게 한 책!</h2>
             <div className="flex items-center gap-3 text-gray-400 mb-4 text-sm">
               <span>2026. 03. 15</span>
+              <span className="text-white/20">|</span>
               <div className="flex items-center gap-1.5" title="조회수">
                 <Eye size={14} />
                 <span>999</span>
