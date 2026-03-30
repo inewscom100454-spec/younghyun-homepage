@@ -23,14 +23,12 @@ export default async function KnowledgePage() {
 
         <div className="space-y-8">
           <div className="bg-white/5 border border-white/10 p-6 rounded-2xl">
-            <h2 className="text-2xl font-bold mb-3 text-brand">최신 인사이트: AI 시대의 콘텐츠 전략</h2>
+            <h2 className="text-2xl font-bold mb-3 text-brand break-keep">각종 모임에서 인간관계 못 맺고 좋은 인맥 못 만드는 10가지 이유</h2>
             <p className="text-gray-400 mb-4 text-sm">2026. 03. 29</p>
-            <p className="text-gray-300 leading-relaxed">
-              AI가 작성하는 본문 정보보다 중요한 것은 결국 '실행'과 '경험'입니다. 
-              온라인 마케팅에서 살아남기 위해서는 기존의 틀을 깨고 초개인화된 맞춤형 콘텐츠를...
-              (회원 전용 프리미엄 콘텐츠 영역 샘플입니다.)
+            <p className="text-gray-300 leading-relaxed text-[15px] break-keep">
+              대한민국 사람들은 모임을 정말 좋아한다. 세 사람만 모여도 모임을 만든다. 나이가 같으면 띠 모임, 아이들을 빌미로 학부모 모임, 같은 이름 모임, 동창 모임, 취미 모임, 사교 모임, 스터디 모임 등 헤아릴 수가 없다. 인터넷이...
             </p>
-            <button className="mt-4 text-brand font-medium hover:underline text-sm">본문 계속 읽기 &rarr;</button>
+            <a href="https://blog.naver.com/newsad1/222806373637" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 text-brand font-medium hover:underline text-sm">본문 계속 읽기 &rarr;</a>
           </div>
 
           <div className="bg-white/5 border border-white/10 p-6 rounded-2xl">
