@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-
-# 도메인이 연결되었으므로 공식 Sitemap 주소를 바라봅니다.
-Sitemap: https://20hyun.com/sitemap.xml
