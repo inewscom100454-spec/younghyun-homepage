@@ -23,7 +23,7 @@ export function Class() {
           transition={{ duration: 0.8 }}
           className="bg-[#111] rounded-3xl border border-white/10 overflow-hidden shadow-2xl"
         >
-          <div className="p-8 md:p-12 lg:p-16 flex flex-col md:flex-row gap-12 items-center">
+          <div className="p-8 md:p-12 lg:p-16 flex flex-col md:flex-row gap-12 items-center md:items-start">
             
             {/* YouTube Video Thumbnail Area */}
             <div className="w-full md:w-1/2">
@@ -62,13 +62,13 @@ export function Class() {
                     <li>
                       <a href="https://blog.naver.com/newsad1/221323052889" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 group transition-transform">
                         <span className="text-brand shrink-0 group-hover:scale-125 transition-transform duration-300">✓</span>
-                        <span className="underline-offset-4 group-hover:underline group-hover:text-brand transition-colors">최고위과정(고마최고) 20기 모집요강</span>
+                        <span className="group-hover:text-brand transition-colors">최고위과정(고마최고) 20기 모집요강</span>
                       </a>
                     </li>
                     <li>
                       <a href="https://blog.naver.com/newsad1/221761108453" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 group transition-transform">
                         <span className="text-brand shrink-0 group-hover:scale-125 transition-transform duration-300">✓</span>
-                        <span className="underline-offset-4 group-hover:underline group-hover:text-brand transition-colors">전문가과정(고마전) 20기 모집요강</span>
+                        <span className="group-hover:text-brand transition-colors">전문가과정(고마전) 20기 모집요강</span>
                       </a>
                     </li>
                   </ul>
@@ -80,7 +80,7 @@ export function Class() {
                     <li>
                       <a href="https://blog.naver.com/newsad1/224172905402" target="_blank" rel="noopener noreferrer" className="flex items-start md:items-center gap-3 group transition-transform">
                         <span className="text-brand shrink-0 group-hover:scale-125 transition-transform duration-300 mt-1 md:mt-0">✓</span>
-                        <span className="underline-offset-4 group-hover:underline group-hover:text-brand transition-colors leading-snug">이영현 교수의 교육산업 AI마케팅과정 1기 모집요강</span>
+                        <span className="group-hover:text-brand transition-colors leading-snug">이영현 교수의 교육산업 AI마케팅과정 1기 모집요강</span>
                       </a>
                     </li>
                   </ul>
