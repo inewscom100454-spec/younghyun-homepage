@@ -55,29 +55,37 @@ export function Class() {
                 2026년 봄 학기 원우 모집 중
               </div>
               
-              <ul className="space-y-4 text-gray-300 text-lg md:text-xl font-bold mt-6 mb-8">
-                <li className="flex items-center gap-3">
-                  <span className="text-brand shrink-0">✓</span>
-                  <span className="text-white">최고위과정(고마최고) 20기</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="text-brand shrink-0">✓</span>
-                  <span className="text-white">전문가과정(고마전) 20기</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="text-brand shrink-0">✓</span>
-                  <span className="text-white">교육산업 전문가과정(고마교) 1기</span>
-                </li>
-              </ul>
-              
-              <a 
-                href="https://www.kuamp.co.kr/" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-10 py-4 mt-2 font-semibold rounded-full text-base transition-all duration-300 bg-brand text-black hover:bg-brand-hover shadow-[0_0_15px_rgba(255,140,0,0.3)] hover:shadow-[0_0_25px_rgba(255,140,0,0.5)]"
-              >
-                자세히 알아보기
-              </a>
+              <div className="space-y-8 mt-8 pb-4">
+                <div>
+                  <h4 className="text-gray-400 text-sm lg:text-base font-medium mb-3">고려대학교 AI온라인마케팅과정</h4>
+                  <ul className="space-y-4 text-white text-lg md:text-xl font-bold">
+                    <li>
+                      <a href="https://blog.naver.com/newsad1/221323052889" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 group transition-transform">
+                        <span className="text-brand shrink-0 group-hover:scale-125 transition-transform duration-300">✓</span>
+                        <span className="underline-offset-4 group-hover:underline group-hover:text-brand transition-colors">최고위과정(고마최고) 20기 모집요강</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://blog.naver.com/newsad1/221761108453" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 group transition-transform">
+                        <span className="text-brand shrink-0 group-hover:scale-125 transition-transform duration-300">✓</span>
+                        <span className="underline-offset-4 group-hover:underline group-hover:text-brand transition-colors">전문가과정(고마전) 20기 모집요강</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="text-gray-400 text-sm lg:text-base font-medium mb-3">한국온라인마케팅연구원</h4>
+                  <ul className="space-y-4 text-white text-lg md:text-xl font-bold">
+                    <li>
+                      <a href="https://blog.naver.com/newsad1/224172905402" target="_blank" rel="noopener noreferrer" className="flex items-start md:items-center gap-3 group transition-transform">
+                        <span className="text-brand shrink-0 group-hover:scale-125 transition-transform duration-300 mt-1 md:mt-0">✓</span>
+                        <span className="underline-offset-4 group-hover:underline group-hover:text-brand transition-colors leading-snug">이영현 교수의 교육산업 AI마케팅과정 1기 모집요강</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
             
           </div>
