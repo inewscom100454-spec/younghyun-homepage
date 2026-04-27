@@ -33,6 +33,7 @@ export const metadata: Metadata = {
     locale: "ko_KR",
   },
   verification: {
+    google: "K8gPYHmLVlVr2sW8hbky1AvNPupLA3pg9mjrcczQR1k",
     other: {
       "naver-site-verification": "8185e54f1527f6fe92d355e9379cf94c54574683",
     },
