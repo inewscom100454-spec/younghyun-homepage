@@ -19,6 +19,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.20hyun.com"),
+  alternates: {
+    canonical: "/",
+  },
   title: "이영현 교수 공식 홈페이지",
   description: "이영현 교수의 공식 웹사이트입니다. 고려대학교 AI온라인마케팅과정 운영, 동두천 장미미용실 저자, AI 강의, 마케팅 강의 및 경영 컨설팅 등",
   keywords: "실행부여가, 이영현교수, AI마케팅교육, AI교육, 온라인마케팅교육, 동두천장미미용실, 고려대학교온라인마케팅과정, 최고경영자과정, 고려대학교AI온라인마케팅과정, 고마최고, 고마전, 고마교",
