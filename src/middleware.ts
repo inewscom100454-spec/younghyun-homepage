@@ -1,12 +1,25 @@
+import { NextResponse } from "next/server";
+import type { NextRequest, NextFetchEvent } from "next/server";
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 const isProtectedRoute = createRouteMatcher(['/knowledge(.*)']);
 
-export default clerkMiddleware(async (auth, req) => {
+const clerk = clerkMiddleware(async (auth, req) => {
   if (isProtectedRoute(req)) {
     await auth.protect();
   }
 });
+
+export default function middleware(req: NextRequest, event: NextFetchEvent) {
+  const userAgent = req.headers.get("user-agent") || "";
+  const isBot = /googlebot|bingbot|yandexbot|baiduspider|twitterbot/i.test(userAgent);
+  
+  if (isBot) {
+    return NextResponse.next();
+  }
+  
+  return clerk(req, event);
+}
 
 export const config = {
   matcher: [
