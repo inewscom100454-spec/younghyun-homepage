@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.20hyun.com"),
+  metadataBase: new URL("https://20hyun.com"),
   alternates: {
     canonical: "/",
   },
