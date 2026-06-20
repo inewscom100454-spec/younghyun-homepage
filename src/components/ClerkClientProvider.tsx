@@ -10,7 +10,7 @@ export function ClerkClientProvider({ children }: { children: React.ReactNode })
 
   useEffect(() => {
     const userAgent = navigator.userAgent.toLowerCase();
-    const isBot = /googlebot|bingbot|yandexbot|baiduspider|twitterbot/i.test(userAgent);
+    const isBot = /googlebot|bingbot|yandexbot|baiduspider|twitterbot|yeti|naver/i.test(userAgent);
     if (isBot) {
       // Use a dummy live key so Clerk initializes in production mode and doesn't run the dev handshake redirect
       setPublishableKey("pk_live_55555555555555555555555555555555");

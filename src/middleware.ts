@@ -12,7 +12,7 @@ const clerk = clerkMiddleware(async (auth, req) => {
 
 export default function middleware(req: NextRequest, event: NextFetchEvent) {
   const userAgent = req.headers.get("user-agent") || "";
-  const isBot = /googlebot|bingbot|yandexbot|baiduspider|twitterbot/i.test(userAgent);
+  const isBot = /googlebot|bingbot|yandexbot|baiduspider|twitterbot|yeti|naver/i.test(userAgent);
   
   if (isBot && !isProtectedRoute(req)) {
     return NextResponse.next();
