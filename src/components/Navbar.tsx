@@ -19,11 +19,11 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "WHO'S LEE?", href: "/#profile" },
-    { name: "주요 저서", href: "/#books" },
-    { name: "강의 현황", href: "/#class" },
-    { name: "비즈니스", href: "/#business" },
-    { name: "비밀노트", href: "/knowledge" },
+    { label: "WHO'S LEE?", href: "/#profile" },
+    { label: "주요 저서", href: "/#books" },
+    { label: "강의 현황", href: "/#class" },
+    { label: "비즈니스", href: "/#business" },
+    { label: "운칠보삼 (운세)", href: "/fortune" },
   ];
 
   return (
@@ -49,17 +49,11 @@ export function Navbar() {
           <div className="hidden md:flex space-x-6 lg:space-x-8 items-center">
             {navLinks.map((link) => (
               <Link
-                key={link.name}
+                key={link.label}
                 href={link.href}
-                className={`flex items-center gap-1 transition-colors text-sm font-medium tracking-wide whitespace-nowrap ${link.name === '비밀노트' ? 'text-brand font-bold' : 'text-gray-300 hover:text-brand'}`}
+                className={`flex items-center gap-1 transition-colors text-sm font-medium tracking-wide whitespace-nowrap ${link.label === '운칠보삼 (운세)' ? 'text-brand font-bold' : 'text-gray-300 hover:text-brand'}`}
               >
-                {link.name === '비밀노트' && (
-                  <svg className="w-3.5 h-3.5 mb-[2px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                    <path d="M7 11V7a5 5 0 0110 0v4"></path>
-                  </svg>
-                )}
-                {link.name}
+                {link.label}
               </Link>
             ))}
             
@@ -102,18 +96,12 @@ export function Navbar() {
           <div className="px-4 py-6 space-y-4">
             {navLinks.map((link) => (
               <Link
-                key={link.name}
+                key={link.label}
                 href={link.href}
-                className={`flex items-center gap-2 px-3 py-3 rounded-md text-lg font-medium border-b border-white/5 ${link.name === '비밀노트' ? 'text-brand font-bold' : 'text-gray-200 hover:text-brand'}`}
+                className={`flex items-center gap-2 px-3 py-3 rounded-md text-lg font-medium border-b border-white/5 ${link.label === '운칠보삼 (운세)' ? 'text-brand font-bold' : 'text-gray-200 hover:text-brand'}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
-                {link.name === '비밀노트' && (
-                  <svg className="w-4 h-4 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                    <path d="M7 11V7a5 5 0 0110 0v4"></path>
-                  </svg>
-                )}
-                {link.name}
+                {link.label}
               </Link>
             ))}
             

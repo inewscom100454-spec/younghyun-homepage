@@ -73,11 +73,24 @@ export function Hero() {
             세계 유일 실행부여가 이영현 교수와 함께 당신의 삶과 비즈니스를 새롭게 시작하세요.
           </p>
 
-          <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
-            <a href="#profile" className="w-full sm:w-56 text-center px-8 py-4 bg-brand text-black font-bold rounded-xl hover:bg-brand-hover transition-colors shadow-[0_0_30px_rgba(255,140,0,0.3)] text-lg uppercase tracking-wider">
+          {/* Reordered buttons with white-transparent styles, orange fill on hover, and no shake animations */}
+          <div className="mt-12 flex flex-col sm:flex-row justify-center items-center gap-4">
+            <a 
+              href="/fortune" 
+              className="w-full sm:w-56 text-center px-8 py-4 bg-white/5 text-white font-medium rounded-xl backdrop-blur-sm border border-white/10 text-lg transition-all duration-300 hover:bg-brand hover:text-black hover:font-bold hover:shadow-[0_0_30px_rgba(255,140,0,0.4)] block animate-neon-pulse"
+            >
+              운칠보삼 (운세)
+            </a>
+            <a 
+              href="#profile" 
+              className="w-full sm:w-56 text-center px-8 py-4 bg-white/5 text-white font-medium rounded-xl backdrop-blur-sm border border-white/10 text-lg transition-all duration-300 hover:bg-brand hover:text-black hover:font-bold hover:shadow-[0_0_30px_rgba(255,140,0,0.4)] block"
+            >
               WHO'S LEE?
             </a>
-            <a href="#class" className="w-full sm:w-56 text-center px-8 py-4 bg-white/5 text-white font-medium rounded-xl hover:bg-white/10 transition-colors backdrop-blur-sm border border-white/10 text-lg">
+            <a 
+              href="#class" 
+              className="w-full sm:w-56 text-center px-8 py-4 bg-white/5 text-white font-medium rounded-xl backdrop-blur-sm border border-white/10 text-lg transition-all duration-300 hover:bg-brand hover:text-black hover:font-bold hover:shadow-[0_0_30px_rgba(255,140,0,0.4)] block"
+            >
               AI 마케팅 강의
             </a>
           </div>

@@ -52,7 +52,7 @@ export function Class() {
             
             <div className="w-full md:w-1/2 space-y-6">
               <div className="inline-block px-5 py-2 rounded-full border border-brand/30 bg-brand/10 text-brand text-sm font-semibold">
-                2026년 봄 학기 원우 모집 중
+                2026년 가을 학기 원우 모집 중
               </div>
               
               <div className="space-y-8 mt-8 pb-4">
@@ -62,28 +62,27 @@ export function Class() {
                     <li>
                       <a href="https://blog.naver.com/newsad1/221323052889" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 group transition-transform">
                         <span className="text-brand shrink-0 group-hover:scale-125 transition-transform duration-300">✓</span>
-                        <span className="group-hover:text-brand transition-colors">최고위과정(고마최고) 20기 모집요강</span>
+                        <span className="group-hover:text-brand transition-colors">최고위과정(고마최고) 21기 모집요강</span>
                       </a>
                     </li>
                     <li>
                       <a href="https://blog.naver.com/newsad1/221761108453" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 group transition-transform">
                         <span className="text-brand shrink-0 group-hover:scale-125 transition-transform duration-300">✓</span>
-                        <span className="group-hover:text-brand transition-colors">전문가과정(고마전) 20기 모집요강</span>
+                        <span className="group-hover:text-brand transition-colors">전문가과정(고마전) 21기 모집요강</span>
                       </a>
                     </li>
                   </ul>
                 </div>
 
-                <div>
-                  <h4 className="text-gray-400 text-sm lg:text-base font-medium mb-3">한국온라인마케팅연구원</h4>
-                  <ul className="space-y-4 text-white text-lg md:text-xl font-bold">
-                    <li>
-                      <a href="https://blog.naver.com/newsad1/224172905402" target="_blank" rel="noopener noreferrer" className="flex items-start md:items-center gap-3 group transition-transform">
-                        <span className="text-brand shrink-0 group-hover:scale-125 transition-transform duration-300 mt-1 md:mt-0">✓</span>
-                        <span className="group-hover:text-brand transition-colors leading-snug">이영현 교수의 교육산업 AI마케팅과정 1기 모집요강</span>
-                      </a>
-                    </li>
-                  </ul>
+                <div className="pt-4 border-t border-white/5">
+                  <a 
+                    href="https://www.kuamp.co.kr" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="inline-flex items-center gap-2 text-brand hover:text-brand-hover text-lg md:text-xl font-bold transition-colors hover:underline"
+                  >
+                    🌐 www.kuamp.co.kr
+                  </a>
                 </div>
               </div>
             </div>

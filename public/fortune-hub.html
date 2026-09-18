@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>이영현 교수의 운칠보삼</title>
+<!-- 메뉴용 폰트: Pretendard (이영현 교수 홈페이지 톤에 맞춘 굵은 산세리프) -->
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<!-- 예비 폰트: 나눔스퀘어 -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@2.0/nanumsquare.css">
+<!-- 한자(干支) 글리프 지원용 폴백 폰트 -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700&display=swap">
+<!-- 사주팔자용 음력/양력 변환 라이브러리 (1900~2100년, 윤달 지원) -->
+<script src="https://cdn.jsdelivr.net/npm/solarlunar@3.1.0/dist/solarlunar.min.js"></script>
+<style>
+  :root{
+    --void:#0A0A0A;
+    --nebula:#161616;
+    --nebula-light:#1F1F1F;
+    --amethyst:#E8631A;
+    --gold:#FF7A29;
+    --silver:#EDEDED;
+    --rose:#9CA3AF;
+    --teal:#4FA3A3;
+    --font-menu:'Pretendard','NanumSquare','Noto Sans KR','Malgun Gothic','Apple SD Gothic Neo',sans-serif;
+    --bright:#FFFFFF;
+    --ease:cubic-bezier(.2,.8,.2,1);
+    --radius-sm:10px;
+    --radius-md:16px;
+    --radius-lg:20px;
+  }
+  *{box-sizing:border-box;}
+  html{ scrollbar-color: rgba(255,122,41,0.35) var(--void); scrollbar-width:thin; }
+  ::-webkit-scrollbar{ width:10px;height:10px; }
+  ::-webkit-scrollbar-track{ background:var(--void); }
+  ::-webkit-scrollbar-thumb{ background:rgba(255,122,41,0.35);border-radius:6px; }
+  ::-webkit-scrollbar-thumb:hover{ background:rgba(255,122,41,0.55); }
+  :focus-visible{ outline:2px solid var(--gold);outline-offset:2px;border-radius:4px; }
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{
+      animation-duration:0.001ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:0.001ms !important;
+      scroll-behavior:auto !important;
+    }
+  }
+  html,body{
+    margin:0;padding:0;min-height:100%;
+    background:radial-gradient(ellipse at 50% 0%, #141414 0%, var(--void) 60%);
+    color:var(--silver);
+    font-family:var(--font-menu);
+    overflow-x:hidden;
+  }
+  #stars{ display:none; }
+  #glow{
+    position:fixed;top:-10%;left:50%;width:900px;height:900px;transform:translateX(-50%);
+    background:radial-gradient(circle, rgba(232,99,26,0.25) 0%, transparent 65%);
+    pointer-events:none;z-index:0;
+  }
+  #stage{
+    position:relative;z-index:2;min-height:100vh;display:flex;align-items:center;justify-content:center;
+    padding:calc(40px + env(safe-area-inset-top,0px)) 16px calc(40px + env(safe-area-inset-bottom,0px));
+  }
+
+  .info-page p{ font-family:var(--font-menu);font-weight:400;font-size:15px;line-height:1.85;color:var(--silver);margin:0 0 16px 0; }
+  .info-page h2{ font-family:var(--font-menu);font-weight:700;font-size:15px;color:var(--gold);margin:26px 0 10px; }
+  .info-page ul{ margin:0 0 16px 0;padding-left:20px; }
+  .info-page li{ font-family:var(--font-menu);font-weight:400;font-size:14.5px;line-height:1.8;color:var(--silver);margin-bottom:8px; }
+  .info-page .meta{ font-family:var(--font-menu);font-weight:600;font-size:11px;color:rgba(255,255,255,0.5);margin-top:30px; }
+  .info-page a{ color:var(--rose); }
+  .contact-box{
+    background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.15);border-radius:8px;
+    padding:20px;text-align:center;margin:22px 0;
+  }
+  .contact-box .email{ font-family:var(--font-menu);font-weight:700;font-size:16px;color:var(--gold);margin:10px 0 4px; }
+
+  .card-frame{
+    width:100%;max-width:660px;
+    background:linear-gradient(180deg, var(--nebula-light), var(--nebula));
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:var(--radius-lg);padding:38px 34px;position:relative;
+    box-shadow:0 24px 60px rgba(0,0,0,0.6), 0 0 60px -30px rgba(255,122,41,0.25);
+  }
+  @media (min-width:900px){
+    .card-frame{ max-width:760px;padding:52px 64px; }
+  }
+  .corner{ display:none; }
+
+  .eyebrow{ text-align:center;font-family:var(--font-menu);font-weight:800;letter-spacing:2px;font-size:clamp(11px,1.6vw,12.5px);color:var(--gold);text-transform:uppercase;margin-bottom:10px; }
+  h1{ text-align:center;font-family:var(--font-menu);font-style:normal;font-weight:800;font-size:clamp(26px,4.5vw,34px);margin:0 0 6px 0;color:var(--bright);letter-spacing:-0.3px; }
+  .sub{ text-align:center;font-family:var(--font-menu);font-weight:500;font-size:clamp(13px,2vw,14.5px);color:var(--rose);margin-bottom:28px;font-style:normal; }
+
+  /* 홈 메뉴 */
+  .menu-list{ display:flex;flex-direction:column;gap:12px; }
+  .menu-card{
+    display:flex;align-items:center;gap:16px;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:var(--radius-md);padding:14px 18px;
+    cursor:pointer;text-align:left;color:var(--silver);
+    transition:transform 0.25s var(--ease), box-shadow 0.25s var(--ease), background 0.25s var(--ease), border-color 0.25s var(--ease);
+    font-family:var(--font-menu);
+  }
+  .menu-card:hover{ border-color:var(--gold);background:rgba(255,122,41,0.08);transform:translateY(-2px);box-shadow:0 10px 22px rgba(0,0,0,0.32); }
+  .menu-card:active{ transform:translateY(0) scale(0.99); }
+  .menu-icon{
+    font-size:20px;width:44px;height:44px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:12px;background:rgba(255,255,255,0.05);
+  }
+  .menu-text{ flex:1; }
+  .menu-title{ font-family:var(--font-menu);font-weight:700;font-size:16px;color:var(--bright);margin-bottom:3px; }
+  .menu-desc{ font-family:var(--font-menu);font-weight:400;font-size:12px;color:var(--rose); }
+  .menu-arrow{ color:var(--gold);font-size:18px;transition:transform 0.25s var(--ease); }
+  .menu-card:hover .menu-arrow{ transform:translateX(3px); }
+
+  .menu-group-label{
+    font-family:var(--font-menu);font-weight:700;font-size:11.5px;letter-spacing:1px;
+    color:var(--gold);
+    margin:20px 0 2px;padding-left:2px;
+  }
+  .menu-card.featured{
+    border-color:rgba(255,122,41,0.45);
+    background:linear-gradient(135deg, rgba(255,122,41,0.09), rgba(255,255,255,0.02));
+  }
+  .menu-card.featured:hover{ background:linear-gradient(135deg, rgba(255,122,41,0.16), rgba(255,255,255,0.03)); }
+  .menu-card.featured .menu-icon{ font-size:22px;width:48px;height:48px;background:rgba(255,122,41,0.14); }
+  .menu-card.featured .menu-title{ font-size:17px;color:var(--gold); }
+
+  .screen{ display:none; }
+  .back-btn{
+    background:none;border:none;color:var(--gold);
+    font-family:var(--font-menu);font-size:12px;letter-spacing:1px;
+    cursor:pointer;padding:0 0 20px 0;display:block;
+  }
+  .back-btn:hover{ color:var(--rose); }
+
+  .field{ margin-bottom:20px; }
+  .field-label{ font-family:var(--font-menu);font-size:11px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:10px;display:block; }
+  .pill-row{ display:flex;flex-wrap:wrap;gap:8px; }
+  .pill{
+    background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.3);color:var(--bright);
+    padding:9px 16px;border-radius:20px;font-family:var(--font-menu);font-weight:600;font-size:14px;cursor:pointer;
+    transition:transform 0.2s var(--ease), background 0.2s var(--ease), border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+  }
+  .pill:hover{ border-color:var(--gold);transform:translateY(-1px); }
+  .pill:active{ transform:translateY(0) scale(0.97); }
+  .pill.selected{ background:var(--amethyst);border-color:var(--amethyst);color:#fff;font-weight:700;box-shadow:0 0 14px rgba(232,99,26,0.6); }
+  select.mystic{
+    width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.3);color:var(--bright);
+    padding:12px 14px;border-radius:var(--radius-sm);font-family:var(--font-menu);font-weight:600;font-size:15px;appearance:none;
+    transition:border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+  }
+  select.mystic:hover{ border-color:rgba(255,122,41,0.5); }
+  select.mystic:focus{ outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(255,122,41,0.22); }
+  select.mystic option{ color:rgba(0,0,0,0.5);background:#fff; }
+  .select-row{ display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px; }
+  .select-row.two{ grid-template-columns:1fr 1fr; }
+  .select-row.four{ grid-template-columns:1fr 1fr 1fr 1.4fr; }
+  @media (max-width:480px){ .select-row, .select-row.four{ grid-template-columns:1fr 1fr; } }
+
+  .btn-primary{
+    display:block;width:100%;margin-top:8px;
+    background:linear-gradient(135deg, var(--amethyst), #B34E12);
+    border:1px solid rgba(255,122,41,0.5);color:#fff;padding:16px;
+    font-family:var(--font-menu);letter-spacing:2px;font-size:14px;text-transform:uppercase;
+    border-radius:var(--radius-sm);cursor:pointer;
+    box-shadow:0 6px 18px rgba(232,99,26,0.35);
+    transition:transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+  }
+  .btn-primary:hover:not(:disabled){ box-shadow:0 8px 26px rgba(232,99,26,0.6);transform:translateY(-1px); }
+  .btn-primary:active:not(:disabled){ transform:translateY(0) scale(0.98);box-shadow:0 4px 12px rgba(232,99,26,0.4); }
+  .btn-primary:disabled{ opacity:0.35;cursor:not-allowed; }
+  .btn-ghost{
+    display:block;width:100%;margin-top:12px;background:transparent;border:1px solid rgba(255,255,255,0.3);color:var(--silver);
+    padding:12px;font-family:var(--font-menu);font-size:12px;letter-spacing:1.5px;border-radius:var(--radius-sm);cursor:pointer;
+    transition:border-color 0.2s var(--ease), color 0.2s var(--ease), transform 0.2s var(--ease);
+  }
+  .btn-ghost:hover{ border-color:var(--gold);color:var(--gold); }
+  .btn-ghost:active{ transform:scale(0.98); }
+
+  .deck-perspective{ perspective:1200px; }
+  .mystic-card{ width:130px;height:190px;position:relative;transform-style:preserve-3d;transition:transform 0.9s cubic-bezier(.2,.9,.25,1);cursor:pointer; }
+  .mystic-card.flipped{ transform:rotateY(180deg); }
+  .face{ position:absolute;inset:0;backface-visibility:hidden;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid rgba(255,122,41,0.6); }
+  .face.back{ background:repeating-linear-gradient(45deg, rgba(255,122,41,0.08) 0 8px, transparent 8px 16px), linear-gradient(160deg, var(--nebula-light), #0A0A0A); }
+  .face.back .rune{ font-size:36px;opacity:0.8; }
+  .face.front{ background:linear-gradient(160deg, #202020, var(--nebula));transform:rotateY(180deg);padding:12px;text-align:center; }
+  .face.front .symbol{ font-size:36px;margin-bottom:8px; }
+  .face.front .cname{ font-family:var(--font-menu);font-weight:700;font-size:13px;color:var(--silver); }
+
+  .hint{ font-family:var(--font-menu);font-size:11px;color:var(--rose);letter-spacing:1px;text-align:center;margin-bottom:14px;opacity:0.85; }
+  .result{ display:none; }
+  .result.show{ display:block;animation:fadein 0.6s ease; }
+  @keyframes fadein{ from{opacity:0;transform:translateY(8px);} to{opacity:1;transform:translateY(0);} }
+  .date-line{ text-align:center;font-family:var(--font-menu);font-size:11px;letter-spacing:1.5px;color:var(--rose);margin-bottom:18px; }
+  #radar-wrap,#star-radar-wrap{ display:flex;justify-content:center;margin-bottom:20px; }
+  .reading{ font-size:16px;line-height:1.85;color:var(--silver);background:rgba(0,0,0,0.15);border-left:3px solid var(--gold);padding:16px 20px;border-radius:4px;margin-bottom:22px; }
+  .lucky-grid{ display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px; }
+  .lucky-box{ background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:12px 10px;text-align:center; }
+  .lucky-box .lbl{ font-family:var(--font-menu);font-size:10px;letter-spacing:1.5px;color:var(--gold);text-transform:uppercase;margin-bottom:8px; }
+  .swatch{ width:26px;height:26px;border-radius:50%;margin:0 auto 6px;border:1px solid rgba(255,255,255,0.3); }
+  .lucky-box .val{ font-size:14px; }
+  .mission{ background:rgba(232,99,26,0.12);border:1px dashed rgba(232,99,26,0.5);border-radius:8px;padding:14px 16px;font-size:14px;margin-bottom:22px; }
+  .mission b{ color:var(--rose); }
+  .rule-note{ text-align:center;font-size:11.5px;color:rgba(255,255,255,0.5);margin-bottom:16px;font-family:var(--font-menu);letter-spacing:0.5px; }
+
+  /* 타로 전용 */
+  .tarot-row{ display:flex;justify-content:center;gap:16px;margin-bottom:22px;flex-wrap:wrap; }
+  .tarot-slot{ display:flex;flex-direction:column;align-items:center;gap:10px; }
+  .tarot-slot .pos-label{ font-family:var(--font-menu);font-size:11px;letter-spacing:2px;color:var(--gold);text-transform:uppercase; }
+  .tarot-card-block{ margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,0.08); }
+  .tarot-card-block:last-of-type{ border-bottom:none; }
+  .tarot-card-block .tcb-title{ font-family:var(--font-menu);font-weight:700;font-size:15px;color:var(--gold);margin-bottom:8px; }
+  .tarot-keywords{ display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px; }
+  .tarot-keywords span{ background:rgba(255,122,41,0.14);color:var(--gold);font-family:var(--font-menu);font-weight:600;font-size:11.5px;padding:4px 10px;border-radius:12px; }
+  .tarot-card-block p{ margin:0;font-size:14.5px;line-height:1.8;color:var(--silver); }
+  .tarot-summary{ margin-top:4px;padding-top:16px;border-top:1px solid rgba(255,122,41,0.3);font-family:var(--font-menu);font-weight:600;color:var(--bright);font-size:14.5px;line-height:1.8; }
+
+  /* 사주 전용 */
+  .disclaimer{ font-size:11.5px;color:rgba(255,255,255,0.55);background:rgba(0,0,0,0.15);border-radius:6px;padding:10px 14px;margin-bottom:20px;line-height:1.6; }
+  .pillar-grid{ display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:22px; }
+  @media (max-width:480px){ .pillar-grid{ grid-template-columns:1fr 1fr; } }
+  .pillar-box{ background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:14px 8px;text-align:center; }
+  .pillar-box .plabel{ font-family:var(--font-menu);font-size:10px;color:var(--rose);letter-spacing:1px;margin-bottom:8px; }
+  .pillar-box .pname{ font-size:18px;color:var(--silver);margin-bottom:2px; }
+  .pillar-box .phanja{ font-size:12px;color:var(--gold);opacity:0.8; }
+  .oheng-bars{ margin-bottom:20px; }
+  .oheng-row{ display:flex;align-items:center;gap:10px;margin-bottom:8px; }
+  .oheng-label{ width:60px;font-size:13px;font-family:var(--font-menu);flex-shrink:0; }
+  .oheng-track{ flex:1;height:10px;background:rgba(255,255,255,0.06);border-radius:5px;overflow:hidden; }
+  .oheng-fill{ height:100%;border-radius:5px;transition:width 0.6s ease; }
+  .oheng-count{ width:16px;text-align:right;font-size:12px;color:var(--silver);flex-shrink:0; }
+  .pillar-detail{ margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.08); }
+  .pillar-detail:last-child{ border-bottom:none;margin-bottom:0;padding-bottom:0; }
+  .pillar-detail .pd-title{ font-family:var(--font-menu);font-weight:700;font-size:14px;color:var(--gold);margin-bottom:6px; }
+  .pillar-detail p{ margin:0;font-family:var(--font-menu);font-size:14px;line-height:1.75;color:var(--silver); }
+
+  /* 궁합 전용 */
+  .compat-cols{ display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:6px; }
+  @media (max-width:480px){ .compat-cols{ grid-template-columns:1fr; } }
+  .compat-person-title{ font-family:var(--font-menu);font-size:12px;letter-spacing:1.5px;color:var(--rose);margin-bottom:12px;text-transform:uppercase; }
+  .gauge-wrap{ display:flex;justify-content:center;margin-bottom:18px; }
+  .compat-score-num{ text-align:center;font-size:44px;color:var(--gold);font-family:var(--font-menu);margin-bottom:2px; }
+  .compat-score-lbl{ text-align:center;font-size:13px;color:var(--rose);margin-bottom:22px; }
+  .breakdown-row{ margin-bottom:14px; }
+  .breakdown-label{ display:flex;justify-content:space-between;font-size:12.5px;font-family:var(--font-menu);color:var(--silver);margin-bottom:6px; }
+  .breakdown-track{ height:8px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden; }
+  .breakdown-fill{ height:100%;background:linear-gradient(90deg,var(--amethyst),var(--gold));border-radius:4px;transition:width 0.6s ease; }
+
+  @media (max-width:480px){ .card-frame{ padding:28px 20px; } .lucky-grid{ grid-template-columns:1fr 1fr; } }
+
+</style>
+</head>
+<body>
+
+<div id="stars"></div>
+<div id="glow"></div>
+
+<div id="stage">
+  <div class="card-frame">
+
+    <!-- ============ 홈 화면 ============ -->
+    <div id="home-screen">
+      <div class="eyebrow">운은 칠, 노력은 삼 · 그래도 일단 보삼</div>
+      <h1>이영현 교수의 운칠보삼</h1>
+      <div class="sub">7개의 행운, 오늘은 어떤 운세부터 보삼?</div>
+      <div class="menu-list">
+        <div class="menu-group-label" style="margin-top:0;">🔥 요즘 가장 많이 찾는</div>
+        <button class="menu-card featured" data-target="screen-tarot">
+          <span class="menu-icon">🃏</span>
+          <span class="menu-text"><div class="menu-title">타로카드</div><div class="menu-desc">세 장의 카드로 보는 과거·현재·미래</div></span>
+          <span class="menu-arrow">›</span>
+        </button>
+        <button class="menu-card featured" data-target="screen-saju">
+          <span class="menu-icon">📜</span>
+          <span class="menu-text"><div class="menu-title">사주팔자</div><div class="menu-desc">생년월일시로 보는 사주와 오행</div></span>
+          <span class="menu-arrow">›</span>
+        </button>
+
+        <div class="menu-group-label">⚡ 오늘, 한 줄로 가볍게</div>
+        <button class="menu-card" data-target="screen-mbti">
+          <span class="menu-icon">🧠</span>
+          <span class="menu-text"><div class="menu-title">MBTI운세</div><div class="menu-desc">성격 유형으로 보는 오늘의 기운</div></span>
+          <span class="menu-arrow">›</span>
+        </button>
+        <button class="menu-card" data-target="screen-zodiac-animal">
+          <span class="menu-icon">🐾</span>
+          <span class="menu-text"><div class="menu-title">띠운세</div><div class="menu-desc">십이지 띠로 보는 오늘의 기운</div></span>
+          <span class="menu-arrow">›</span>
+        </button>
+        <button class="menu-card" data-target="screen-blood">
+          <span class="menu-icon">🩸</span>
+          <span class="menu-text"><div class="menu-title">혈액형운세</div><div class="menu-desc">혈액형 하나로 보는 오늘의 기운</div></span>
+          <span class="menu-arrow">›</span>
+        </button>
+        <button class="menu-card" data-target="screen-star">
+          <span class="menu-icon">✨</span>
+          <span class="menu-text"><div class="menu-title">별자리운세</div><div class="menu-desc">생일로 보는 서양 별자리 운세</div></span>
+          <span class="menu-arrow">›</span>
+        </button>
+
+        <div class="menu-group-label">💞 둘이서 함께</div>
+        <button class="menu-card" data-target="screen-compat">
+          <span class="menu-icon">💞</span>
+          <span class="menu-text"><div class="menu-title">궁합보기</div><div class="menu-desc">나와 상대, 우리는 얼마나 잘 맞을까</div></span>
+          <span class="menu-arrow">›</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ============ 혈액형운세 ============ -->
+    <div class="screen" id="screen-blood">
+      <button class="back-btn">← 홈으로</button>
+      <div class="eyebrow">BLOOD TYPE FORTUNE</div>
+      <h1 style="font-size:22px;">혈액형운세</h1>
+      <div class="sub">혈액형 하나로 보는 오늘의 기운</div>
+      <div id="bl-setup">
+        <div class="field"><span class="field-label">혈액형</span><div class="pill-row" id="bl-blood-row"></div></div>
+        <button class="btn-primary" id="bl-draw-btn" disabled>혈액형 운세 보기</button>
+      </div>
+      <div class="result" id="bl-result">
+        <div style="text-align:center;font-size:52px;margin-bottom:6px;" id="bl-symbol"></div>
+        <div style="text-align:center;font-size:20px;color:var(--gold);margin-bottom:20px;" id="bl-name"></div>
+        <div class="reading" id="bl-personality" style="margin-bottom:16px;"></div>
+        <div class="reading" id="bl-reading"></div>
+        <div class="lucky-grid">
+          <div class="lucky-box"><div class="lbl">행운의 색</div><div class="swatch" id="bl-color-swatch"></div><div class="val" id="bl-color-name"></div></div>
+          <div class="lucky-box"><div class="lbl">행운의 숫자</div><div class="val" id="bl-number" style="font-size:22px;color:var(--gold);margin-top:6px;"></div></div>
+          <div class="lucky-box"><div class="lbl">행운의 아이템</div><div class="val" id="bl-item" style="margin-top:12px;"></div></div>
+        </div>
+        <div class="mission"><b>오늘의 실행 미션 ·</b> <span id="bl-mission"></span></div>
+        <button class="btn-ghost" id="bl-reset-btn">다시 보기</button>
+      </div>
+    </div>
+
+    <!-- ============ 띠운세 ============ -->
+    <div class="screen" id="screen-zodiac-animal">
+      <button class="back-btn">← 홈으로</button>
+      <div class="eyebrow">CHINESE ZODIAC FORTUNE</div>
+      <h1 style="font-size:22px;">띠운세</h1>
+      <div class="sub">십이지 띠로 보는 오늘의 기운</div>
+      <div id="za-setup">
+        <div class="field"><span class="field-label">띠</span><div class="pill-row" id="za-zodiac-row"></div></div>
+        <button class="btn-primary" id="za-draw-btn" disabled>띠 운세 보기</button>
+      </div>
+      <div class="result" id="za-result">
+        <div style="text-align:center;font-size:52px;margin-bottom:6px;" id="za-symbol"></div>
+        <div style="text-align:center;font-size:20px;color:var(--gold);margin-bottom:20px;" id="za-name"></div>
+        <div class="reading" id="za-personality" style="margin-bottom:16px;"></div>
+        <div class="reading" id="za-reading"></div>
+        <div class="lucky-grid">
+          <div class="lucky-box"><div class="lbl">행운의 색</div><div class="swatch" id="za-color-swatch"></div><div class="val" id="za-color-name"></div></div>
+          <div class="lucky-box"><div class="lbl">행운의 숫자</div><div class="val" id="za-number" style="font-size:22px;color:var(--gold);margin-top:6px;"></div></div>
+          <div class="lucky-box"><div class="lbl">행운의 아이템</div><div class="val" id="za-item" style="margin-top:12px;"></div></div>
+        </div>
+        <div class="mission"><b>오늘의 실행 미션 ·</b> <span id="za-mission"></span></div>
+        <button class="btn-ghost" id="za-reset-btn">다시 보기</button>
+      </div>
+    </div>
+
+    <!-- ============ MBTI운세 ============ -->
+    <div class="screen" id="screen-mbti">
+      <button class="back-btn">← 홈으로</button>
+      <div class="eyebrow">MBTI FORTUNE</div>
+      <h1 style="font-size:22px;">MBTI운세</h1>
+      <div class="sub">성격 유형으로 보는 오늘의 기운</div>
+      <div id="mb-setup">
+        <div class="field"><span class="field-label">MBTI</span><select class="mystic" id="mb-select"></select></div>
+        <button class="btn-primary" id="mb-draw-btn" disabled>MBTI 운세 보기</button>
+      </div>
+      <div class="result" id="mb-result">
+        <div style="text-align:center;font-size:52px;margin-bottom:6px;" id="mb-symbol"></div>
+        <div style="text-align:center;font-size:20px;color:var(--gold);margin-bottom:20px;" id="mb-name"></div>
+        <div class="reading" id="mb-personality" style="margin-bottom:16px;"></div>
+        <div class="reading" id="mb-reading"></div>
+        <div class="lucky-grid">
+          <div class="lucky-box"><div class="lbl">행운의 색</div><div class="swatch" id="mb-color-swatch"></div><div class="val" id="mb-color-name"></div></div>
+          <div class="lucky-box"><div class="lbl">행운의 숫자</div><div class="val" id="mb-number" style="font-size:22px;color:var(--gold);margin-top:6px;"></div></div>
+          <div class="lucky-box"><div class="lbl">행운의 아이템</div><div class="val" id="mb-item" style="margin-top:12px;"></div></div>
+        </div>
+        <div class="mission"><b>오늘의 실행 미션 ·</b> <span id="mb-mission"></span></div>
+        <button class="btn-ghost" id="mb-reset-btn">다시 보기</button>
+      </div>
+    </div>
+
+    <!-- ============ 타로카드 ============ -->
+    <div class="screen" id="screen-tarot">
+      <button class="back-btn">← 홈으로</button>
+      <div class="eyebrow">TAROT · THREE CARD SPREAD</div>
+      <h1 style="font-size:22px;">타로카드</h1>
+      <div class="sub">과거 · 현재 · 미래, 세 장의 카드가 전하는 이야기</div>
+      <div id="t-intro" style="text-align:center;">
+        <p style="line-height:1.8;color:var(--silver);margin-bottom:24px;">마음을 가라앉히고, 지금 가장 궁금한 것을 떠올려보세요.<br>준비가 되면 카드를 뽑아보세요.</p>
+        <button class="btn-primary" id="t-draw-btn">세 장의 카드 뽑기</button>
+      </div>
+      <div id="t-deck" style="display:none;">
+        <div class="tarot-row" id="t-row"></div>
+        <div class="result" id="t-result">
+          <div class="reading" id="t-reading"></div>
+          <button class="btn-ghost" id="t-reset-btn">다시 뽑기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 사주팔자 ============ -->
+    <div class="screen" id="screen-saju">
+      <button class="back-btn">← 홈으로</button>
+      <div class="eyebrow">SAJU · FOUR PILLARS</div>
+      <h1 style="font-size:22px;">사주팔자</h1>
+      <div class="sub">태어난 순간의 우주가 그리는 오행의 흐름</div>
+      <div id="s-setup">
+        <div class="field">
+          <span class="field-label">달력 종류</span>
+          <div class="pill-row" id="s-calendar-row"></div>
+        </div>
+        <div class="field">
+          <span class="field-label">태어난 날짜</span>
+          <div class="select-row">
+            <select class="mystic" id="s-year"></select>
+            <select class="mystic" id="s-month"></select>
+            <select class="mystic" id="s-day"></select>
+          </div>
+        </div>
+        <div class="field" id="s-leap-field" style="display:none;">
+          <label style="display:flex;align-items:center;gap:8px;font-family:var(--font-menu);font-size:13px;color:var(--rose);cursor:pointer;">
+            <input type="checkbox" id="s-leap-check" style="width:16px;height:16px;accent-color:var(--gold);">
+            이 달은 윤달(閏月)이에요
+          </label>
+        </div>
+        <div class="field">
+          <span class="field-label">태어난 시간 (모르면 생략 가능)</span>
+          <select class="mystic" id="s-hour"></select>
+        </div>
+        <button class="btn-primary" id="s-draw-btn">사주 보기</button>
+      </div>
+      <div class="result" id="s-result">
+        <div class="disclaimer">✦ 음력 생일은 자동으로 양력으로 변환해서 계산해요. 정밀한 절기 경계까지는 반영하지 않은 캐주얼 버전이니 재미로 봐주세요.</div>
+        <div class="reading" id="s-daymaster" style="margin-bottom:20px;"></div>
+        <div class="pillar-grid" id="s-pillars"></div>
+        <div id="s-pillar-roles" style="margin-bottom:22px;"></div>
+        <div class="oheng-bars" id="s-oheng"></div>
+        <div class="reading" id="s-reading"></div>
+        <div class="lucky-grid" id="s-lucky-grid" style="grid-template-columns:1fr 1fr;">
+          <div class="lucky-box"><div class="lbl">보완 색상</div><div class="swatch" id="s-color-swatch"></div><div class="val" id="s-color-name"></div></div>
+          <div class="lucky-box"><div class="lbl">추천 아이템</div><div class="val" id="s-item" style="margin-top:12px;"></div></div>
+        </div>
+        <button class="btn-ghost" id="s-reset-btn">다시 보기</button>
+      </div>
+    </div>
+
+    <!-- ============ 별자리운세 ============ -->
+    <div class="screen" id="screen-star">
+      <button class="back-btn">← 홈으로</button>
+      <div class="eyebrow">WESTERN HOROSCOPE</div>
+      <h1 style="font-size:22px;">별자리운세</h1>
+      <div class="sub">생일이 가리키는 오늘의 하늘</div>
+      <div id="z-setup">
+        <div class="field">
+          <span class="field-label">생일 (월 / 일)</span>
+          <div class="select-row two">
+            <select class="mystic" id="z-month"></select>
+            <select class="mystic" id="z-day"></select>
+          </div>
+        </div>
+        <button class="btn-primary" id="z-draw-btn">별자리 운세 보기</button>
+      </div>
+      <div class="result" id="z-result">
+        <div style="text-align:center;font-size:52px;margin-bottom:6px;" id="z-symbol"></div>
+        <div style="text-align:center;font-size:20px;color:var(--gold);margin-bottom:20px;" id="z-name"></div>
+        <div class="reading" id="z-personality" style="margin-bottom:16px;"></div>
+        <div class="reading" id="z-reading"></div>
+        <div class="lucky-grid">
+          <div class="lucky-box"><div class="lbl">행운의 색</div><div class="swatch" id="z-color-swatch"></div><div class="val" id="z-color-name"></div></div>
+          <div class="lucky-box"><div class="lbl">행운의 숫자</div><div class="val" id="z-number" style="font-size:22px;color:var(--gold);margin-top:6px;"></div></div>
+          <div class="lucky-box"><div class="lbl">행운의 아이템</div><div class="val" id="z-item" style="margin-top:12px;"></div></div>
+        </div>
+        <div class="mission"><b>오늘의 실행 미션 ·</b> <span id="z-mission"></span></div>
+        <button class="btn-ghost" id="z-reset-btn">다시 보기</button>
+      </div>
+    </div>
+
+    <!-- ============ 궁합보기 ============ -->
+    <div class="screen" id="screen-compat">
+      <button class="back-btn">← 홈으로</button>
+      <div class="eyebrow">COMPATIBILITY</div>
+      <h1 style="font-size:22px;">궁합보기</h1>
+      <div class="sub">나와 상대, 우리는 얼마나 잘 맞을까요</div>
+      <div id="c-setup">
+        <div class="compat-cols">
+          <div>
+            <div class="compat-person-title">나</div>
+            <div class="field"><span class="field-label">혈액형</span><select class="mystic" id="c-a-blood"></select></div>
+            <div class="field"><span class="field-label">띠</span><select class="mystic" id="c-a-zodiac"></select></div>
+            <div class="field"><span class="field-label">MBTI</span><select class="mystic" id="c-a-mbti"></select></div>
+          </div>
+          <div>
+            <div class="compat-person-title">상대</div>
+            <div class="field"><span class="field-label">혈액형</span><select class="mystic" id="c-b-blood"></select></div>
+            <div class="field"><span class="field-label">띠</span><select class="mystic" id="c-b-zodiac"></select></div>
+            <div class="field"><span class="field-label">MBTI</span><select class="mystic" id="c-b-mbti"></select></div>
+          </div>
+        </div>
+        <button class="btn-primary" id="c-draw-btn">궁합 보기</button>
+      </div>
+      <div class="result" id="c-result">
+        <div class="compat-score-num" id="c-score"></div>
+        <div class="compat-score-lbl" id="c-comment"></div>
+        <div class="breakdown-row">
+          <div class="breakdown-label"><span>띠 궁합</span><span id="c-zodiac-pct"></span></div>
+          <div class="breakdown-track"><div class="breakdown-fill" id="c-zodiac-bar"></div></div>
+        </div>
+        <div class="breakdown-row">
+          <div class="breakdown-label"><span>혈액형 궁합</span><span id="c-blood-pct"></span></div>
+          <div class="breakdown-track"><div class="breakdown-fill" id="c-blood-bar"></div></div>
+        </div>
+        <div class="breakdown-row">
+          <div class="breakdown-label"><span>MBTI 궁합</span><span id="c-mbti-pct"></span></div>
+          <div class="breakdown-track"><div class="breakdown-fill" id="c-mbti-bar"></div></div>
+        </div>
+        <div class="reading" id="c-reading" style="margin-top:18px;"></div>
+        <button class="btn-ghost" id="c-reset-btn">다시 보기</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function(){
+
+  /* ================= 공통: 네비게이션 ================= */
+  const homeScreen = document.getElementById('home-screen');
+  const screens = document.querySelectorAll('.screen');
+
+  function openScreen(id){
+    homeScreen.style.display = 'none';
+    screens.forEach(sc=>sc.style.display='none');
+    document.getElementById(id).style.display='block';
+  }
+  function goHome(){
+    screens.forEach(sc=>sc.style.display='none');
+    homeScreen.style.display='block';
+  }
+
+  document.querySelectorAll('.menu-card').forEach(btn=>{
+    btn.addEventListener('click', ()=> openScreen(btn.getAttribute('data-target')));
+  });
+  document.querySelectorAll('.back-btn').forEach(btn=>{
+    btn.addEventListener('click', goHome);
+  });
+
+  /* ================= 공통 데이터 ================= */
+  const bloodTypes = ['A','B','O','AB'];
+  const zodiacData = {
+    '쥐':{emoji:'🐭', flavors:['민첩한 판단이 기회를 놓치지 않게 해줘요','작은 신호도 놓치지 않는 눈썰미가 빛나요']},
+    '소':{emoji:'🐮', flavors:['묵묵한 노력이 결실을 맺는 날이에요','든든한 뚝심이 주변의 신뢰를 얻어요']},
+    '호랑이':{emoji:'🐯', flavors:['용맹한 기세가 앞길을 뚫어줘요','과감한 결단이 필요한 순간이 찾아와요']},
+    '토끼':{emoji:'🐰', flavors:['부드러운 대처가 갈등을 풀어줘요','민감한 감각이 좋은 소식을 먼저 알아채요']},
+    '용':{emoji:'🐲', flavors:['큰 그림을 그리기 좋은 날이에요','카리스마가 주변을 이끄는 힘이 되어줘요']},
+    '뱀':{emoji:'🐍', flavors:['날카로운 통찰이 진실을 꿰뚫어봐요','조용한 관찰이 큰 힌트를 발견해요']},
+    '말':{emoji:'🐴', flavors:['거침없는 추진력이 오늘을 이끌어요','새로운 길을 향해 달려나가기 좋은 날이에요']},
+    '양':{emoji:'🐑', flavors:['온화한 마음이 좋은 인연을 불러와요','섬세한 배려가 관계를 부드럽게 해줘요']},
+    '원숭이':{emoji:'🐵', flavors:['재치있는 순발력이 상황을 반전시켜요','유쾌한 아이디어가 막힌 길을 뚫어줘요']},
+    '닭':{emoji:'🐔', flavors:['부지런함이 하루를 알차게 채워줘요','정확한 판단이 실수를 막아줘요']},
+    '개':{emoji:'🐶', flavors:['의리와 신의가 오늘의 든든한 힘이 돼요','진심 어린 태도가 관계를 깊게 만들어요']},
+    '돼지':{emoji:'🐷', flavors:['넉넉한 마음이 뜻밖의 행운을 불러와요','여유로운 태도가 좋은 결과로 이어져요']}
+  };
+  const zodiacOrder = Object.keys(zodiacData);
+  const mbtiList = ['INTJ','INTP','ENTJ','ENTP','INFJ','INFP','ENFJ','ENFP','ISTJ','ISFJ','ESTJ','ESFJ','ISTP','ISFP','ESTP','ESFP'];
+  const mbtiFlavor = {
+    INTJ:'치밀한 전략가의 눈으로 오늘을 설계하게 될 거예요', INTP:'호기심이 오늘의 문을 여는 열쇠가 되어줄 거예요',
+    ENTJ:'추진력이 주변 분위기를 이끄는 하루예요', ENTP:'즉흥적인 아이디어가 뜻밖의 기회를 물어다 줘요',
+    INFJ:'조용한 통찰이 중요한 실마리를 알려줘요', INFP:'마음이 이끄는 방향이 결국 옳은 길이에요',
+    ENFJ:'누군가를 향한 다정함이 오늘의 운을 끌어와요', ENFP:'넘치는 에너지가 새로운 인연을 불러와요',
+    ISTJ:'꾸준함이 오늘의 든든한 무기가 되어줘요', ISFJ:'세심한 배려가 뜻밖의 보답으로 돌아와요',
+    ESTJ:'현실적인 판단력이 상황을 정리해줘요', ESFJ:'따뜻한 말 한마디가 하루를 바꿔놓아요',
+    ISTP:'침착한 손끝이 문제를 조용히 풀어내요', ISFP:'감각적인 선택이 오늘 하루를 물들여요',
+    ESTP:'순발력이 위기를 기회로 바꿔줘요', ESFP:'유쾌한 텐션이 주변까지 밝혀줘요'
+  };
+  const bloodFlavor = {
+    A:['신중함이 오늘의 방패가 되어줘요','세심하게 살핀 것들이 결국 빛을 발해요','작은 원칙을 지키는 것이 큰 행운을 부릅니다'],
+    B:['자유로운 발걸음이 뜻밖의 장소로 이어져요','즉흥적인 선택이 오히려 정답일 수 있어요','틀에서 벗어난 시도가 좋은 결과를 만들어요'],
+    O:['활력이 넘치는 기운이 주변을 끌어당겨요','솔직한 태도가 신뢰를 쌓아줘요','대담한 한 걸음이 운을 크게 키워줘요'],
+    AB:['이성과 감성의 균형이 오늘의 열쇠예요','남다른 시선이 새로운 가능성을 열어줘요','차분함 속에 숨은 직관을 믿어보세요']
+  };
+  const dailyCards = [
+    {name:'달빛의 카드', symbol:'🌙', meaning:'직관이 유난히 예리해지는 날이에요. 마음의 소리에 귀 기울여보세요.'},
+    {name:'나침반의 카드', symbol:'🧭', meaning:'방향을 다시 점검할 때예요. 서두르지 않아도 길은 찾아져요.'},
+    {name:'거울의 카드', symbol:'🪞', meaning:'스스로를 돌아보면 뜻밖의 답이 보여요.'},
+    {name:'불꽃의 카드', symbol:'🔥', meaning:'열정이 오늘의 원동력이에요. 망설이던 일을 시작해보세요.'},
+    {name:'그림자의 카드', symbol:'🌑', meaning:'조용히 버티는 힘이 필요한 하루예요. 인내가 곧 보상이 돼요.'},
+    {name:'씨앗의 카드', symbol:'🌱', meaning:'작은 시작이 훗날 큰 결실로 자라나요.'},
+    {name:'저울의 카드', symbol:'⚖️', meaning:'균형 감각이 중요한 선택의 순간이 찾아와요.'},
+    {name:'왕관의 카드', symbol:'👑', meaning:'그동안의 노력이 인정받는 순간이 다가와요.'},
+    {name:'파도의 카드', symbol:'🌊', meaning:'변화의 흐름에 몸을 맡기면 오히려 편안해져요.'},
+    {name:'별자리의 카드', symbol:'✨', meaning:'뜻밖의 인연이 오늘의 운을 밝게 비춰줘요.'}
+  ];
+  const luckyColors = [
+    {name:'라벤더 퍼플', hex:'#B39DDB'}, {name:'미드나잇 블루', hex:'#3F51B5'}, {name:'로즈 골드', hex:'#E0A899'},
+    {name:'세이지 그린', hex:'#9CAF88'}, {name:'앤틱 골드', hex:'#C9A24B'}, {name:'문스톤 화이트', hex:'#E9E4F0'},
+    {name:'와인 레드', hex:'#7B2D42'}, {name:'딥 틸', hex:'#1B4B4B'}
+  ];
+  const luckyItems = ['은목걸이','손편지','우산','따뜻한 차 한 잔','오래된 책','작은 화분','동전 지갑','손목시계','향초','메모지'];
+  const missions = [
+    '평소 미뤄둔 연락 한 통 해보기','새로운 길로 출근·등교해보기','좋아하는 노래로 플레이리스트 만들기',
+    '고마운 사람에게 짧은 메시지 보내기','평소 안 먹던 음식 시도해보기','책상 위 조용히 정리해보기',
+    '잠들기 전 오늘 있었던 좋은 일 3가지 적어보기'
+  ];
+  const statNames = ['총운','애정운','금전운','건강운','행운'];
+  const genericDaily = [
+    '작은 우연이 큰 의미로 다가올 수 있어요','평소와 다른 선택이 좋은 결과로 이어져요',
+    '주변 사람과의 대화 속에 힌트가 숨어있어요','생각보다 쉽게 풀리는 일이 생길 거예요',
+    '서두르지 않아도 때가 되면 자연스럽게 풀려요','마음의 여유가 오늘의 가장 큰 자산이에요',
+    '뜻밖의 만남이 반가운 소식을 가져다줘요','평범한 하루 속에 특별한 순간이 숨어있어요'
+  ];
+
+  function hashStr(str){
+    let h = 1779033703 ^ str.length;
+    for(let i=0;i<str.length;i++){ h = Math.imul(h ^ str.charCodeAt(i), 3432918353); h = (h<<13)|(h>>>19); }
+    return (h ^= h>>>16) >>> 0;
+  }
+  function mulberry32(a){
+    return function(){
+      a |= 0; a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a>>>15), 1 | a);
+      t = (t + Math.imul(t ^ (t>>>7), 61 | t)) ^ t;
+      return ((t ^ (t>>>14)) >>> 0) / 4294967296;
+    };
+  }
+  function buildRadar(stats, containerSel){
+    const size = 220, center = size/2, maxR = 78;
+    const angleStep = (Math.PI*2)/5, startAngle = -Math.PI/2;
+    function point(i, frac){ const ang = startAngle + i*angleStep; const r = maxR*frac; return [center + r*Math.cos(ang), center + r*Math.sin(ang)]; }
+    let gridRings = '';
+    [0.25,0.5,0.75,1].forEach(frac=>{
+      let pts=[]; for(let i=0;i<5;i++) pts.push(point(i,frac).join(','));
+      gridRings += `<polygon points="${pts.join(' ')}" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>`;
+    });
+    let axisLines = '';
+    for(let i=0;i<5;i++){ const p = point(i,1); axisLines += `<line x1="${center}" y1="${center}" x2="${p[0]}" y2="${p[1]}" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>`; }
+    let dataPts = []; for(let i=0;i<5;i++) dataPts.push(point(i, stats[i]/5));
+    const polygonPoints = dataPts.map(p=>p.join(',')).join(' ');
+    let dots = dataPts.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="3.5" fill="#FF7A29"/>`).join('');
+    let labels = '';
+    for(let i=0;i<5;i++){ const p = point(i,1.28); labels += `<text x="${p[0]}" y="${p[1]}" fill="#EDEDED" font-size="12" font-family="Pretendard, sans-serif" font-weight="700" text-anchor="middle" dominant-baseline="middle">${statNames[i]}\u2009${stats[i]}</text>`; }
+    document.querySelector(containerSel).innerHTML = `
+      <svg width="${size+60}" height="${size+30}" viewBox="0 0 ${size+60} ${size+30}">
+        <g transform="translate(30,15)">${gridRings}${axisLines}
+          <polygon points="${polygonPoints}" fill="rgba(232,99,26,0.35)" stroke="#E8631A" stroke-width="2"/>
+          ${dots}${labels}
+        </g>
+      </svg>`;
+  }
+  function todayKey(){ const t = new Date(); return t.getFullYear()+'-'+(t.getMonth()+1)+'-'+t.getDate(); }
+
+  /* ================= 혈액형운세 모듈 ================= */
+  (function(){
+    const bloodSymbol = {A:'🅰️', B:'🅱️', O:'🅾️', AB:'🆎'};
+    const BLOOD_PERSONALITY = {
+      A:'신중하고 계획적인 성격으로, 맡은 일은 끝까지 책임지려 해요. 겉으론 조용해 보여도 내면에 섬세한 배려심과 완벽주의 성향이 자리하고 있어요.',
+      B:'자유롭고 개성이 강한 성격으로, 틀에 얽매이기보다 자기만의 방식을 찾아가는 걸 좋아해요. 호기심이 많고 관심사가 생기면 몰입하는 힘이 뛰어나요.',
+      O:'활동적이고 사교적인 성격으로, 주변 사람들을 이끄는 리더십이 자연스럽게 나와요. 목표가 생기면 망설임 없이 행동으로 옮기는 추진력이 강점이에요.',
+      AB:'이성과 감성을 오가는 다면적인 성격으로, 상황에 따라 다른 얼굴을 보여줄 수 있어요. 남들과 다른 독특한 시각으로 문제를 바라보는 힘이 있어요.'
+    };
+    const BLOOD_LOVE = {
+      A:['조심스러운 마음이 오히려 진심으로 전해지는 날이에요','작은 배려가 관계를 한 뼘 더 가깝게 만들어요'],
+      B:['즉흥적인 데이트가 뜻밖의 설렘을 가져다줘요','솔직한 감정 표현이 관계에 활력을 줘요'],
+      O:['적극적인 태도가 좋은 인연으로 이어질 수 있어요','자신감 있는 모습이 매력으로 다가가는 날이에요'],
+      AB:['묘한 신비로움이 상대의 호기심을 자극해요','예상 밖의 대화 주제가 관계를 깊게 만들어요']
+    };
+    const BLOOD_MONEY = {
+      A:['계획대로 지출하면 손해 볼 일이 없는 하루예요','작은 절약이 나중에 큰 도움이 돼요'],
+      B:['충동구매만 조심하면 무난한 하루예요','예상치 못한 지출을 대비해두면 좋아요'],
+      O:['과감한 투자보다 안정적인 선택이 유리해요','베푸는 만큼 돌아오는 기운이 있는 날이에요'],
+      AB:['꼼꼼히 따져보면 의외의 이득을 챙길 수 있어요','충동적인 결정보다 한 번 더 생각해보는 게 좋아요']
+    };
+    let selected = null;
+    const row = document.getElementById('bl-blood-row');
+    const drawBtn = document.getElementById('bl-draw-btn');
+    bloodTypes.forEach(b=>{
+      const el = document.createElement('button'); el.className='pill'; el.textContent=b+'형';
+      el.addEventListener('click', ()=>{ selected=b; [...row.children].forEach(c=>c.classList.remove('selected')); el.classList.add('selected'); drawBtn.disabled=false; });
+      row.appendChild(el);
+    });
+    drawBtn.addEventListener('click', ()=>{
+      const rand = mulberry32(hashStr(todayKey()+'|blood|'+selected));
+      const phrase = bloodFlavor[selected][Math.floor(rand()*bloodFlavor[selected].length)];
+      const generic = genericDaily[Math.floor(rand()*genericDaily.length)];
+      const love = BLOOD_LOVE[selected][Math.floor(rand()*BLOOD_LOVE[selected].length)];
+      const money = BLOOD_MONEY[selected][Math.floor(rand()*BLOOD_MONEY[selected].length)];
+      const colorIdx = Math.floor(rand()*luckyColors.length);
+      const itemIdx = Math.floor(rand()*luckyItems.length);
+      const missionIdx = Math.floor(rand()*missions.length);
+      const number = 1+Math.floor(rand()*45);
+      document.getElementById('bl-symbol').textContent = bloodSymbol[selected];
+      document.getElementById('bl-name').textContent = selected+'형';
+      document.getElementById('bl-personality').innerHTML = `<b style="color:var(--gold);">${selected}형은 이런 성격이에요</b><br>${BLOOD_PERSONALITY[selected]}`;
+      document.getElementById('bl-reading').innerHTML =
+        `<b style="color:var(--gold);">총운</b> · ${phrase}. 오늘은 특히, ${generic}.<br><br>`+
+        `<b style="color:var(--gold);">애정운</b> · ${love}.<br><br>`+
+        `<b style="color:var(--gold);">금전운</b> · ${money}.`;
+      document.getElementById('bl-color-swatch').style.background = luckyColors[colorIdx].hex;
+      document.getElementById('bl-color-name').textContent = luckyColors[colorIdx].name;
+      document.getElementById('bl-number').textContent = number;
+      document.getElementById('bl-item').textContent = luckyItems[itemIdx];
+      document.getElementById('bl-mission').textContent = missions[missionIdx];
+      document.getElementById('bl-result').classList.add('show');
+    });
+    document.getElementById('bl-reset-btn').addEventListener('click', ()=>{
+      document.getElementById('bl-result').classList.remove('show');
+    });
+  })();
+
+  /* ================= 띠운세 모듈 ================= */
+  (function(){
+    const ZODIAC_PERSONALITY = {
+      쥐:'영리하고 눈치가 빨라 상황 판단이 빠른 편이에요. 위기 속에서도 기회를 찾아내는 재주가 있고, 실속을 챙기는 감각이 뛰어나요.',
+      소:'우직하고 성실해서 한번 맡은 일은 끝까지 해내는 뚝심이 있어요. 화려하진 않아도 꾸준함으로 신뢰를 쌓는 타입이에요.',
+      호랑이:'당당하고 카리스마 있는 성격으로, 무리를 이끄는 자리가 잘 어울려요. 정의감이 강해서 옳지 않은 일은 그냥 지나치지 못해요.',
+      토끼:'섬세하고 온화한 성격으로, 주변 분위기를 부드럽게 만드는 재주가 있어요. 갈등을 싫어해서 평화로운 관계를 우선시해요.',
+      용:'스케일이 크고 자신감이 넘치는 성격이에요. 남들이 가지 않은 길도 두려움 없이 개척하는 리더십이 돋보여요.',
+      뱀:'차분하고 통찰력이 뛰어나 겉으로 드러내지 않아도 속으로 많은 걸 파악하고 있어요. 신중한 판단으로 실수를 줄이는 편이에요.',
+      말:'활동적이고 자유로운 성격으로, 한 곳에 머무르기보다 계속 움직이며 성장하는 걸 좋아해요. 솔직한 표현이 매력이에요.',
+      양:'온순하고 다정한 성격으로, 다른 사람을 배려하는 마음이 깊어요. 예술적 감각이 뛰어나고 감수성이 풍부한 편이에요.',
+      원숭이:'재치있고 순발력이 뛰어나 어떤 상황에서도 유연하게 대처해요. 아이디어가 많고 호기심이 왕성한 편이에요.',
+      닭:'부지런하고 계획적인 성격으로, 맡은 일을 완벽하게 해내려는 책임감이 강해요. 자기 관리에 철저한 편이에요.',
+      개:'의리 있고 정직한 성격으로, 한번 믿은 사람은 끝까지 지키려 해요. 정의롭고 공정한 것을 중요하게 여겨요.',
+      돼지:'너그럽고 낙천적인 성격으로, 주변 사람들에게 넉넉한 인심을 베풀어요. 순수하고 솔직한 마음이 큰 매력이에요.'
+    };
+    const ZODIAC_LOVE = {
+      쥐:['눈치 빠른 배려가 상대의 마음을 사로잡아요','실속있는 데이트 계획이 좋은 반응을 얻어요'],
+      소:['한결같은 태도가 신뢰를 쌓아가는 하루예요','느리지만 진심이 전해지는 날이에요'],
+      호랑이:['당당한 매력이 시선을 끄는 하루예요','솔직한 애정 표현이 관계를 진전시켜요'],
+      토끼:['다정한 말 한마디가 마음을 녹여요','부드러운 배려가 관계를 편안하게 만들어요'],
+      용:['자신감 있는 모습이 매력 포인트가 돼요','스케일 큰 이벤트가 좋은 인상을 남겨요'],
+      뱀:['묘한 매력이 상대를 끌어당기는 날이에요','깊은 대화가 관계를 한층 가깝게 해요'],
+      말:['자유로운 데이트가 즐거운 추억을 만들어요','솔직한 감정 표현이 좋은 반응을 얻어요'],
+      양:['세심한 배려가 상대를 감동시켜요','따뜻한 공감이 관계를 깊게 만들어요'],
+      원숭이:['재치있는 농담이 분위기를 살려요','즉흥적인 이벤트가 즐거움을 더해요'],
+      닭:['계획적인 데이트가 좋은 인상을 남겨요','정성스러운 준비가 마음을 전해요'],
+      개:['한결같은 진심이 신뢰를 쌓아가요','약속을 지키는 모습이 매력으로 다가가요'],
+      돼지:['넉넉한 마음이 편안함을 줘요','솔직한 애정 표현이 관계를 따뜻하게 해요']
+    };
+    const ZODIAC_MONEY = {
+      쥐:['알뜰한 소비가 여윳돈을 만들어요','작은 정보 하나가 이득으로 이어져요'],
+      소:['꾸준한 저축이 결실을 맺는 흐름이에요','무리한 지출만 피하면 안정적이에요'],
+      호랑이:['과감한 결정이 좋은 결과로 이어질 수 있어요','자신감 있는 협상이 유리하게 작용해요'],
+      토끼:['신중한 선택이 손해를 막아줘요','작은 씀씀이부터 점검해보면 좋아요'],
+      용:['큰 그림을 그리기 좋은 재정 흐름이에요','과감한 투자보다 계획이 먼저예요'],
+      뱀:['꼼꼼한 분석이 의외의 이득을 가져다줘요','서두르지 않는 판단이 유리해요'],
+      말:['활동적인 만큼 지출도 늘 수 있으니 주의하세요','새로운 기회가 재정에 도움이 돼요'],
+      양:['베푸는 마음이 좋은 순환으로 돌아와요','충동적인 소비만 조심하면 무난해요'],
+      원숭이:['재치있는 아이디어가 부수입으로 이어져요','여러 정보를 비교해보면 이득이에요'],
+      닭:['철저한 가계부 관리가 빛을 발해요','계획적인 소비가 안정감을 줘요'],
+      개:['신뢰를 바탕으로 한 거래가 유리해요','정직한 태도가 좋은 결과로 이어져요'],
+      돼지:['넉넉한 마음이 뜻밖의 행운을 불러와요','무리하지 않는 선에서 여유를 즐기세요']
+    };
+    let selected = null;
+    const row = document.getElementById('za-zodiac-row');
+    const drawBtn = document.getElementById('za-draw-btn');
+    zodiacOrder.forEach(z=>{
+      const el = document.createElement('button'); el.className='pill'; el.textContent=zodiacData[z].emoji+' '+z;
+      el.addEventListener('click', ()=>{ selected=z; [...row.children].forEach(c=>c.classList.remove('selected')); el.classList.add('selected'); drawBtn.disabled=false; });
+      row.appendChild(el);
+    });
+    drawBtn.addEventListener('click', ()=>{
+      const rand = mulberry32(hashStr(todayKey()+'|zodiac|'+selected));
+      const flavors = zodiacData[selected].flavors;
+      const phrase = flavors[Math.floor(rand()*flavors.length)];
+      const generic = genericDaily[Math.floor(rand()*genericDaily.length)];
+      const love = ZODIAC_LOVE[selected][Math.floor(rand()*ZODIAC_LOVE[selected].length)];
+      const money = ZODIAC_MONEY[selected][Math.floor(rand()*ZODIAC_MONEY[selected].length)];
+      const colorIdx = Math.floor(rand()*luckyColors.length);
+      const itemIdx = Math.floor(rand()*luckyItems.length);
+      const missionIdx = Math.floor(rand()*missions.length);
+      const number = 1+Math.floor(rand()*45);
+      document.getElementById('za-symbol').textContent = zodiacData[selected].emoji;
+      document.getElementById('za-name').textContent = selected+'띠';
+      document.getElementById('za-personality').innerHTML = `<b style="color:var(--gold);">${selected}띠는 이런 성격이에요</b><br>${ZODIAC_PERSONALITY[selected]}`;
+      document.getElementById('za-reading').innerHTML =
+        `<b style="color:var(--gold);">총운</b> · ${phrase}. 오늘은 특히, ${generic}.<br><br>`+
+        `<b style="color:var(--gold);">애정운</b> · ${love}.<br><br>`+
+        `<b style="color:var(--gold);">금전운</b> · ${money}.`;
+      document.getElementById('za-color-swatch').style.background = luckyColors[colorIdx].hex;
+      document.getElementById('za-color-name').textContent = luckyColors[colorIdx].name;
+      document.getElementById('za-number').textContent = number;
+      document.getElementById('za-item').textContent = luckyItems[itemIdx];
+      document.getElementById('za-mission').textContent = missions[missionIdx];
+      document.getElementById('za-result').classList.add('show');
+    });
+    document.getElementById('za-reset-btn').addEventListener('click', ()=>{
+      document.getElementById('za-result').classList.remove('show');
+    });
+  })();
+
+  /* ================= MBTI운세 모듈 ================= */
+  (function(){
+    const sel = document.getElementById('mb-select');
+    const drawBtn = document.getElementById('mb-draw-btn');
+    sel.appendChild(new Option('MBTI를 선택하세요',''));
+    mbtiList.forEach(m=> sel.appendChild(new Option(m,m)));
+    sel.addEventListener('change', ()=>{ drawBtn.disabled = !sel.value; });
+
+    const MBTI_PERSONALITY = {
+      INTJ:'치밀한 전략가 타입으로, 큰 그림을 그리고 효율적으로 실행하는 걸 좋아해요. 독립적인 성향이 강해서 스스로 정한 기준에 따라 움직이는 걸 편하게 여겨요.',
+      INTP:'논리적인 분석가 타입으로, 세상의 원리를 이해하는 것 자체에 즐거움을 느껴요. 호기심이 많아 다양한 주제에 관심을 갖지만, 관심 없는 일에는 무심한 편이에요.',
+      ENTJ:'타고난 지휘관 타입으로, 목표를 설정하고 사람들을 이끄는 데 능숙해요. 효율을 중시해서 비효율적인 과정은 과감히 걷어내려 해요.',
+      ENTP:'아이디어 뱅크 타입으로, 새로운 가능성을 탐색하는 걸 즐겨요. 논쟁을 두려워하지 않고, 오히려 토론을 통해 생각을 발전시키는 걸 좋아해요.',
+      INFJ:'통찰력 있는 조언가 타입으로, 사람과 상황의 이면을 꿰뚫어보는 힘이 있어요. 이상을 품고 있지만, 그것을 조용히 실현해나가는 스타일이에요.',
+      INFP:'이상주의적인 중재자 타입으로, 자신만의 가치관을 소중히 여겨요. 겉으로는 조용해도 내면에 깊은 신념과 감정을 품고 있어요.',
+      ENFJ:'타고난 선도자 타입으로, 사람들의 성장을 돕는 데서 보람을 느껴요. 공감 능력이 뛰어나 주변 사람들의 마음을 잘 헤아려요.',
+      ENFP:'열정적인 활동가 타입으로, 새로운 사람과 경험에 대한 호기심이 넘쳐요. 에너지가 풍부해서 주변 분위기를 밝게 만드는 힘이 있어요.',
+      ISTJ:'신뢰할 수 있는 관리자 타입으로, 원칙과 규칙을 지키는 걸 중요하게 여겨요. 맡은 책임은 끝까지 완수하려는 성실함이 강점이에요.',
+      ISFJ:'헌신적인 수호자 타입으로, 주변 사람을 세심하게 챙기는 걸 좋아해요. 겸손하고 배려심이 깊어 조용히 도움을 주는 편이에요.',
+      ESTJ:'체계적인 관리자 타입으로, 현실적인 판단과 추진력이 뛰어나요. 정해진 목표를 향해 효율적으로 조직을 이끌어가는 힘이 있어요.',
+      ESFJ:'사교적인 외교관 타입으로, 사람들과의 관계를 소중히 여겨요. 배려심이 많고 주변 분위기를 조화롭게 만드는 재주가 있어요.',
+      ISTP:'논리적인 장인 타입으로, 손으로 직접 만지고 해결하는 걸 좋아해요. 위기 상황에서 침착하게 문제를 해결하는 능력이 뛰어나요.',
+      ISFP:'자유로운 예술가 타입으로, 감각적이고 심미적인 것에 끌려요. 자기만의 속도로 삶을 즐기며, 조용히 자신을 표현하는 편이에요.',
+      ESTP:'모험을 즐기는 사업가 타입으로, 순발력 있게 상황에 대처해요. 행동파라서 생각보다 몸이 먼저 움직이는 편이에요.',
+      ESFP:'즉흥적인 연예인 타입으로, 사람들과 함께하는 순간을 즐겨요. 에너지가 넘치고 주변을 즐겁게 만드는 매력이 있어요.'
+    };
+    const MBTI_GROUP_LOVE = {
+      NT:['논리적인 대화가 오히려 매력 포인트가 돼요','신뢰를 바탕으로 한 관계가 편안하게 느껴져요'],
+      NF:['진심어린 대화가 관계를 깊게 만들어요','서로의 가치관을 나누는 시간이 큰 의미가 돼요'],
+      SJ:['한결같은 태도가 신뢰를 쌓아가는 하루예요','작은 약속을 지키는 모습이 좋은 인상을 남겨요'],
+      SP:['즉흥적인 만남이 즐거운 에너지를 만들어요','솔직한 감정 표현이 관계에 활력을 줘요']
+    };
+    const MBTI_GROUP_MONEY = {
+      NT:['효율적인 계획이 재정에 도움이 돼요','분석적인 판단이 좋은 결정을 이끌어요'],
+      NF:['가치 있다고 느끼는 곳에 투자하면 만족도가 높아요','충동보다 의미를 따져보는 게 좋아요'],
+      SJ:['꼼꼼한 가계부 관리가 빛을 발해요','계획적인 소비가 안정감을 줘요'],
+      SP:['즉흥적인 지출은 오늘만큼은 조심하세요','새로운 기회에 마음이 끌리는 하루예요']
+    };
+
+    function groupIcon(m){
+      if(m[1]==='N'){ return m[2]==='T' ? '🧠' : '🌙'; }
+      return m[3]==='J' ? '🛡️' : '🎨';
+    }
+    function mbtiGroup(m){
+      if(m[1]==='N'){ return m[2]==='T' ? 'NT' : 'NF'; }
+      return m[3]==='J' ? 'SJ' : 'SP';
+    }
+    drawBtn.addEventListener('click', ()=>{
+      const m = sel.value;
+      const grp = mbtiGroup(m);
+      const rand = mulberry32(hashStr(todayKey()+'|mbti|'+m));
+      const phrase = mbtiFlavor[m];
+      const generic = genericDaily[Math.floor(rand()*genericDaily.length)];
+      const love = MBTI_GROUP_LOVE[grp][Math.floor(rand()*MBTI_GROUP_LOVE[grp].length)];
+      const money = MBTI_GROUP_MONEY[grp][Math.floor(rand()*MBTI_GROUP_MONEY[grp].length)];
+      const colorIdx = Math.floor(rand()*luckyColors.length);
+      const itemIdx = Math.floor(rand()*luckyItems.length);
+      const missionIdx = Math.floor(rand()*missions.length);
+      const number = 1+Math.floor(rand()*45);
+      document.getElementById('mb-symbol').textContent = groupIcon(m);
+      document.getElementById('mb-name').textContent = m;
+      document.getElementById('mb-personality').innerHTML = `<b style="color:var(--gold);">${m}는 이런 성격이에요</b><br>${MBTI_PERSONALITY[m]}`;
+      document.getElementById('mb-reading').innerHTML =
+        `<b style="color:var(--gold);">총운</b> · ${phrase}. 오늘은 특히, ${generic}.<br><br>`+
+        `<b style="color:var(--gold);">애정운</b> · ${love}.<br><br>`+
+        `<b style="color:var(--gold);">금전운</b> · ${money}.`;
+      document.getElementById('mb-color-swatch').style.background = luckyColors[colorIdx].hex;
+      document.getElementById('mb-color-name').textContent = luckyColors[colorIdx].name;
+      document.getElementById('mb-number').textContent = number;
+      document.getElementById('mb-item').textContent = luckyItems[itemIdx];
+      document.getElementById('mb-mission').textContent = missions[missionIdx];
+      document.getElementById('mb-result').classList.add('show');
+    });
+    document.getElementById('mb-reset-btn').addEventListener('click', ()=>{
+      document.getElementById('mb-result').classList.remove('show');
+    });
+  })();
+
+  /* ================= 타로 모듈 ================= */
+  (function(){
+    const TAROT = [
+      {name:'바보', symbol:'🃏', meaning:'새로운 시작과 순수한 도전을 의미해요.', keywords:['새로운 시작','자유로운 발걸음','순수한 용기'], detail:'아직 정해지지 않은 길 위에 서 있는 상태예요. 두려움보다 호기심이 앞서는 지금, 계획이 완벽하지 않아도 일단 발을 내딛는 것이 오히려 좋은 흐름을 만들어요.', advice:'너무 많은 걸 따지지 말고, 일단 한 걸음 내딛어보세요.'},
+      {name:'마법사', symbol:'🪄', meaning:'의지와 준비된 능력으로 뜻을 이루는 힘을 뜻해요.', keywords:['의지','창조력','준비된 능력'], detail:'필요한 자원과 능력이 이미 당신 손 안에 있는 상태예요. 머릿속 아이디어를 실제로 실행에 옮기기 좋은 시기이고, 스스로에 대한 믿음이 결과를 크게 좌우해요.', advice:'가진 것들을 정리해서, 지금 바로 실행 계획을 세워보세요.'},
+      {name:'여사제', symbol:'🌙', meaning:'직관과 감춰진 진실, 내면의 목소리를 뜻해요.', keywords:['직관','고요함','숨겨진 진실'], detail:'답은 이미 마음속에 있지만, 소란스러운 일상 속에 묻혀 있는 상태예요. 서두르지 않고 조용히 관찰할수록 더 정확한 판단을 내릴 수 있어요.', advice:'결정을 서두르지 말고, 혼자만의 시간을 가져보세요.'},
+      {name:'여황제', symbol:'🌾', meaning:'풍요로움과 돌봄, 창조적인 에너지를 뜻해요.', keywords:['풍요','돌봄','창조 에너지'], detail:'무언가를 키워내고 가꾸는 에너지가 강한 시기예요. 사람이든 프로젝트든, 정성을 들인 만큼 결실이 자라나는 흐름이에요.', advice:'조급해하지 말고, 꾸준히 정성을 쏟아보세요.'},
+      {name:'황제', symbol:'👑', meaning:'안정과 통제, 흔들리지 않는 리더십을 뜻해요.', keywords:['안정','리더십','원칙'], detail:'스스로 세운 원칙과 체계가 힘을 발휘하는 시기예요. 감정보다 구조와 계획을 앞세울 때 더 좋은 결과로 이어져요.', advice:'계획을 세우고, 그 계획을 끝까지 밀어붙여보세요.'},
+      {name:'교황', symbol:'📿', meaning:'전통과 조언, 배움이 필요한 시기를 뜻해요.', keywords:['배움','조언','전통적 지혜'], detail:'혼자 판단하기보다, 경험 많은 사람의 조언을 구하기 좋은 시기예요. 이미 검증된 방식을 따르는 것이 새로운 시도보다 안전할 수 있어요.', advice:'믿을 만한 사람에게 먼저 의견을 물어보세요.'},
+      {name:'연인', symbol:'💞', meaning:'선택의 순간과 마음이 이끄는 관계를 뜻해요.', keywords:['선택','진심','관계'], detail:'머리보다 마음이 이끄는 방향에 힘이 실리는 시기예요. 특히 관계에 있어서 중요한 선택의 갈림길에 서 있을 수 있어요.', advice:'조건보다, 진짜 마음이 가는 쪽을 따라가 보세요.'},
+      {name:'전차', symbol:'🏇', meaning:'추진력과 목표를 향한 거침없는 질주를 뜻해요.', keywords:['추진력','목표','승부욕'], detail:'방향이 정해졌다면 거침없이 밀고 나가야 하는 시기예요. 여러 갈래로 흩어진 힘을 하나로 모을수록 속도가 붙어요.', advice:'망설이는 시간을 줄이고, 정한 목표를 향해 밀어붙이세요.'},
+      {name:'힘', symbol:'🦁', meaning:'용기와 인내, 부드럽지만 단단한 힘을 뜻해요.', keywords:['용기','인내','부드러운 힘'], detail:'억지로 힘으로 밀어붙이기보다, 부드럽지만 꾸준한 태도로 상황을 다루는 것이 유리한 시기예요. 감정을 다스리는 힘이 곧 진짜 실력이 돼요.', advice:'화내거나 조급해하지 말고, 침착하게 버텨보세요.'},
+      {name:'은둔자', symbol:'🕯️', meaning:'성찰과 고독, 스스로에게 묻는 시간을 뜻해요.', keywords:['성찰','고독','내면 탐구'], detail:'바깥의 소음에서 잠시 떨어져, 스스로에게 질문을 던져야 하는 시기예요. 혼자 있는 시간이 오히려 다음 단계로 가는 힌트를 줘요.', advice:'약속을 줄이고, 혼자 생각할 시간을 만들어보세요.'},
+      {name:'운명의 수레바퀴', symbol:'🎡', meaning:'예상치 못한 전환점과 변화의 흐름을 뜻해요.', keywords:['전환점','변화','타이밍'], detail:'흐름 자체가 크게 바뀌는 시점이에요. 통제하려 애쓰기보다, 변화의 방향에 몸을 맡기는 편이 오히려 더 좋은 결과로 이어질 수 있어요.', advice:'상황을 억지로 되돌리려 하지 말고, 흐름을 지켜보세요.'},
+      {name:'정의', symbol:'⚖️', meaning:'균형과 공정함, 인과의 결과를 뜻해요.', keywords:['균형','공정','인과'], detail:'그동안의 선택과 행동에 대한 결과가 명확하게 돌아오는 시기예요. 감정적인 판단보다 객관적이고 공정한 기준이 필요해요.', advice:'감정을 배제하고, 사실관계부터 정리해보세요.'},
+      {name:'매달린 사람', symbol:'🙃', meaning:'멈춤과 관점의 전환, 기다림의 지혜를 뜻해요.', keywords:['멈춤','기다림','관점 전환'], detail:'지금 당장 움직이는 것보다, 잠시 멈춰서 다른 각도로 상황을 바라봐야 하는 시기예요. 답답해 보여도, 이 기다림 자체가 필요한 과정이에요.', advice:'억지로 밀어붙이지 말고, 지금은 기다려보세요.'},
+      {name:'죽음', symbol:'🥀', meaning:'끝맺음과 새로운 시작, 변화의 문턱을 뜻해요.', keywords:['끝맺음','전환','새출발'], detail:'하나의 국면이 확실하게 끝나고 다른 국면이 시작되는 시기예요. 미련이 남더라도, 붙잡고 있던 것을 정리해야 다음이 열려요.', advice:'끝난 것은 인정하고, 새로 시작할 준비를 해보세요.'},
+      {name:'절제', symbol:'🍷', meaning:'조화와 균형, 중용의 미덕을 뜻해요.', keywords:['조화','절제','중용'], detail:'극단으로 치우치지 않고, 서로 다른 것들 사이에서 균형을 맞추는 능력이 필요한 시기예요. 서두르지 않는 태도가 결국 좋은 결과를 만들어요.', advice:'양쪽 다 놓치지 않도록, 속도를 조절해보세요.'},
+      {name:'악마', symbol:'⛓️', meaning:'집착과 유혹, 스스로를 옭아매는 것을 뜻해요.', keywords:['집착','유혹','자기 구속'], detail:'스스로를 옭아매고 있는 습관이나 관계를 돌아봐야 하는 시기예요. 문제의 원인이 외부가 아니라, 놓지 못하는 스스로의 마음일 수 있어요.', advice:'무엇에 집착하고 있는지, 솔직하게 인정해보세요.'},
+      {name:'탑', symbol:'🗼', meaning:'급작스러운 변화와 무너짐 뒤의 재건을 뜻해요.', keywords:['급변','붕괴','재건'], detail:'갑작스러운 사건이 기존의 틀을 뒤흔드는 시기예요. 당장은 혼란스럽지만, 무너진 자리에 더 튼튼한 것을 다시 세울 기회이기도 해요.', advice:'무너진 것에 미련 갖지 말고, 다시 세울 준비를 하세요.'},
+      {name:'별', symbol:'⭐', meaning:'희망과 치유, 잔잔히 차오르는 회복을 뜻해요.', keywords:['희망','치유','회복'], detail:'힘들었던 시기를 지나 서서히 회복되는 흐름이에요. 화려하진 않아도, 잔잔하고 꾸준한 좋은 기운이 이어지는 시기예요.', advice:'조급해하지 말고, 회복되는 속도를 믿어보세요.'},
+      {name:'달', symbol:'🌕', meaning:'불안과 환상, 감춰진 것의 그림자를 뜻해요.', keywords:['불안','환상','불확실함'], detail:'상황이 명확하게 보이지 않아 막연한 불안이 커지는 시기예요. 지금 느끼는 감정이 사실보다 부풀려져 있을 수 있다는 걸 기억해야 해요.', advice:'막연한 불안에 휘둘리지 말고, 사실부터 확인해보세요.'},
+      {name:'태양', symbol:'☀️', meaning:'성취와 기쁨, 밝고 확실한 결실을 뜻해요.', keywords:['성취','기쁨','자신감'], detail:'그동안의 노력이 눈에 보이는 결과로 나타나는 밝은 시기예요. 자신감을 갖고 스스로를 드러내도 좋은 반응을 얻을 수 있어요.', advice:'자신 있게, 지금의 성과를 마음껏 드러내보세요.'},
+      {name:'심판', symbol:'📯', meaning:'각성과 부름, 중요한 결정의 순간을 뜻해요.', keywords:['각성','부름','재평가'], detail:'지금까지의 선택들을 되돌아보고 재평가해야 하는 시기예요. 놓치고 있던 것을 깨닫는 순간, 중요한 결정을 내릴 힘이 생겨요.', advice:'지난 선택들을 돌아보고, 이번엔 제대로 결정해보세요.'},
+      {name:'세계', symbol:'🌍', meaning:'완성과 통합, 하나의 여정이 끝나는 순간을 뜻해요.', keywords:['완성','통합','마무리'], detail:'하나의 여정이 만족스럽게 마무리되는 시기예요. 다음 단계로 넘어가기 전에, 지금까지의 과정을 충분히 인정하고 축하해도 좋아요.', advice:'끝맺음을 미루지 말고, 지금까지의 과정을 인정해보세요.'}
+    ];
+    const positions = ['과거','현재','미래'];
+    const positionIntro = [
+      (n)=>`과거의 자리에는 ${n}가 놓여있어요. 지금의 당신을 만든 배경이 되는 기운이에요.`,
+      (n)=>`현재의 자리에는 ${n}가 자리하고 있어요. 지금 이 순간 당신을 둘러싼 흐름이에요.`,
+      (n)=>`미래의 자리에는 ${n}가 기다리고 있어요. 곧 다가올 가능성을 보여주는 카드예요.`
+    ];
+
+    document.getElementById('t-draw-btn').addEventListener('click', drawTarot);
+    document.getElementById('t-reset-btn').addEventListener('click', ()=>{
+      document.getElementById('t-deck').style.display='none';
+      document.getElementById('t-result').classList.remove('show');
+      document.getElementById('t-intro').style.display='block';
+    });
+
+    function drawTarot(){
+      document.getElementById('t-intro').style.display='none';
+      document.getElementById('t-deck').style.display='block';
+      document.getElementById('t-result').classList.remove('show');
+
+      const idxPool = [...Array(TAROT.length).keys()];
+      for(let i=idxPool.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [idxPool[i],idxPool[j]]=[idxPool[j],idxPool[i]]; }
+      const picked = idxPool.slice(0,3);
+
+      const row = document.getElementById('t-row');
+      row.innerHTML = '';
+      picked.forEach((cardIdx, slotIdx)=>{
+        const slot = document.createElement('div'); slot.className='tarot-slot';
+        const c = TAROT[cardIdx];
+        slot.innerHTML = `
+          <div class="pos-label">${positions[slotIdx]}</div>
+          <div class="deck-perspective">
+            <div class="mystic-card">
+              <div class="face back"><span class="rune">✦</span></div>
+              <div class="face front"><div class="symbol">${c.symbol}</div><div class="cname">${c.name}</div></div>
+            </div>
+          </div>`;
+        row.appendChild(slot);
+      });
+
+      const cardEls = row.querySelectorAll('.mystic-card');
+      cardEls.forEach((el, i)=>{
+        setTimeout(()=>{ el.classList.add('flipped'); }, 400 + i*400);
+      });
+
+      setTimeout(()=>{
+        const cards = picked.map(i=>TAROT[i]);
+        const blocksHtml = cards.map((c, i)=>`
+          <div class="tarot-card-block">
+            <div class="tcb-title">${positions[i]} · ${c.symbol} ${c.name}</div>
+            <div class="tarot-keywords">${c.keywords.map(k=>`<span>${k}</span>`).join('')}</div>
+            <p>${positionIntro[i](c.name)} ${c.detail}</p>
+          </div>
+        `).join('');
+        const summaryHtml = `
+          <div class="tarot-summary">
+            종합 조언 — ${cards[1].advice} 그리고 ${cards[2].advice}
+          </div>`;
+        document.getElementById('t-reading').innerHTML = blocksHtml + summaryHtml;
+        document.getElementById('t-result').classList.add('show');
+      }, 400 + 3*400 + 300);
+    }
+  })();
+
+  /* ================= 사주팔자 모듈 ================= */
+  (function(){
+    const STEMS=['갑','을','병','정','무','기','경','신','임','계'];
+    const STEM_HANJA=['甲','乙','丙','丁','戊','己','庚','辛','壬','癸'];
+    const STEM_ELEM=['목','목','화','화','토','토','금','금','수','수'];
+    const BRANCHES=['자','축','인','묘','진','사','오','미','신','유','술','해'];
+    const BRANCH_HANJA=['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+    const BRANCH_ELEM=['수','토','목','목','토','화','화','토','금','금','토','수'];
+    const ELEM_COLOR={목:'#7CB88F',화:'#C1666B',토:'#C9A24B',금:'#D8D2E0',수:'#4F6FA3'};
+    const ELEM_FULL={목:'목(나무)',화:'화(불)',토:'토(흙)',금:'금(쇠)',수:'수(물)'};
+    const ELEM_FLAVOR={
+      목:'성장과 확장의 기운이 강해요. 새로운 프로젝트 제안이 들어오면 일단 해보자는 마음이 먼저 들고, 낯선 모임에도 망설임 없이 먼저 나가보는 식으로 나타나요. 배우고 도전하는 일 자체에서 에너지를 얻는 흐름이에요.',
+      화:'열정과 표현력이 두드러져요. 발표나 면접처럼 나를 드러내야 하는 자리에서 오히려 힘을 발휘하고, 하고 싶은 말을 마음속에 담아두기보다 바로 꺼내는 편이에요. 사람들 앞에 나서는 일에 유리한 기운이에요.',
+      토:'안정과 신뢰의 기운이 자리잡고 있어요. 이직이나 이사처럼 큰 결정을 내릴 때도 충분히 따져보고 움직이고, 한번 맺은 관계나 자리는 웬만해선 오래 지키는 편이에요. 꾸준함이 결실을 맺는 흐름이에요.',
+      금:'결단력과 원칙이 두드러져요. 애매하게 미뤄둔 관계나 일을 깔끔하게 정리하고 싶어지고, 원칙에 어긋나는 상황에는 손해를 감수하고서라도 선을 긋는 모습으로 나타나요. 맺고 끊는 것이 분명해지는 시기예요.',
+      수:'유연함과 지혜가 흐르는 기운이에요. 복잡한 상황일수록 여러 각도로 곱씹어보고, 남들이 무심코 지나치는 디테일을 유독 잘 짚어내는 식으로 드러나요. 생각이 깊어지고 통찰이 예리해지는 시기예요.'
+    };
+    const ELEM_PRACTICE={
+      목:'새로운 걸 배우거나 낯선 자리에 한번 나가보는 것',
+      화:'마음속 생각을 말로 표현하거나 사람들 앞에 나서보는 것',
+      토:'루틴을 지키거나 미뤄둔 일을 마무리 짓는 것',
+      금:'애매하게 미뤄둔 결정을 정리하고 매듭짓는 것',
+      수:'충분히 쉬면서 생각을 정리할 시간을 갖는 것'
+    };
+    const ELEM_SUGGEST_COLOR={목:'초록색',화:'빨간색',토:'노란색·갈색',금:'흰색·은색',수:'검정색·남색'};
+    const ELEM_HEX={목:'#7CB88F',화:'#C1666B',토:'#C9A24B',금:'#D8D2E0',수:'#4F6FA3'};
+    const ELEM_ITEM={목:'초록 식물이나 원목 소품',화:'붉은 계열의 소품이나 따뜻한 조명',토:'도자기 그릇이나 화분',금:'금속 액세서리나 손목시계',수:'물이 담긴 화병이나 어항'};
+    const GENERATES={목:'화',화:'토',토:'금',금:'수',수:'목'};
+    const OVERCOMES={목:'토',토:'수',수:'화',화:'금',금:'목'};
+    const DAY_MASTER={
+      갑:'크고 곧은 나무처럼, 원칙과 명분을 중요하게 여기는 성격이에요. 리더의 자리에서 앞장서길 좋아하고, 한번 정한 방향은 쉽게 굽히지 않는 뚝심이 있어요. 회사에서 새 프로젝트를 맡으면 남들이 반대해도 스스로 옳다고 믿는 방향으로 밀어붙이는 타입이고, 팀 회의에서도 자연스럽게 의견을 주도하는 역할을 맡곤 해요.',
+      을:'바람에 휘어지는 풀처럼 유연하고 적응력이 뛰어나요. 겉으로는 부드러워 보여도, 원하는 것을 향해 끈질기게 나아가는 생활력이 강해요. 회사 방침이 갑자기 바뀌어도 금세 새로운 방식을 찾아 적응하고, 겉으로는 순순히 따르는 것 같아도 결국엔 자기가 원하는 결과를 만들어내는 편이에요.',
+      병:'태양처럼 밝고 에너지가 넘치는 성격이에요. 사람들 앞에 나서는 것을 즐기고, 주변 분위기를 밝게 만드는 힘이 있어요. 모임에 가면 자연스럽게 분위기 메이커 역할을 맡고, 발표나 사람들 앞에 서는 자리에서 오히려 에너지를 얻는 타입이에요.',
+      정:'은은하지만 꺼지지 않는 촛불처럼, 조용하지만 깊은 열정을 품고 있어요. 화려하게 드러내기보다, 곁에서 세심하게 챙기는 데 강점이 있어요. 팀 전체보다 옆자리 동료 한 명의 고민을 먼저 알아채고, 생일이나 기념일 같은 작은 디테일을 잘 챙기는 편이에요.',
+      무:'큰 산처럼 묵직하고 신뢰감을 주는 성격이에요. 쉽게 흔들리지 않고, 주변 사람들이 기대어 쉴 수 있는 든든한 존재가 되어줘요. 위기 상황에서 다들 당황해도 혼자 침착하게 중심을 잡아주고, 친구들 사이에서 고민 상담을 가장 많이 받는 타입이에요.',
+      기:'기름진 땅처럼 포용력이 크고 실용적인 성격이에요. 화려함보다 실속을 중시하고, 묵묵히 주변을 챙기는 살림꾼 기질이 있어요. 여행 계획을 짤 때 숙소·예산·동선까지 꼼꼼히 챙기는 사람이 바로 이 타입이고, 티는 안 나지만 주변이 잘 굴러가는 데 핵심 역할을 해요.',
+      경:'다듬어지지 않은 원석 같은 강인함을 지녔어요. 결단력이 뛰어나고 옳다고 믿는 것은 굽히지 않는 의리와 뚝심이 있어요. 부당한 일을 보면 손해를 감수하고서라도 할 말은 하는 편이고, 한번 맺은 인연은 웬만해선 등지지 않아요.',
+      신:'잘 세공된 보석처럼 예리하고 섬세한 성격이에요. 미적 감각이 뛰어나고, 완벽을 추구하는 만큼 스스로에게도 엄격한 편이에요. 옷차림이나 업무 결과물의 디테일을 남들보다 훨씬 예민하게 신경 쓰고, 작은 실수도 오래 곱씹는 편이에요.',
+      임:'큰 바다처럼 스케일이 크고 포용력이 넓은 성격이에요. 새로운 것을 받아들이는 데 거침이 없고, 어디서든 적응하는 유연함이 있어요. 낯선 곳으로 갑자기 발령이 나도 금방 적응하고, 다양한 사람들과 두루두루 잘 어울리는 마당발 스타일이에요.',
+      계:'조용히 스며드는 빗물처럼 섬세하고 직관이 예리해요. 겉으로 드러내지 않아도 속으로 깊이 생각하는 유형이라, 통찰력이 뛰어나요. 회의에서 말은 적게 해도 나중에 보면 가장 정확한 지적을 하고, 상대의 표정만 보고도 무슨 일이 있었는지 눈치채는 편이에요.'
+    };
+    const PILLAR_ROLE={
+      년주:'조상과 어린 시절, 사회에 비치는 첫인상을 상징해요. 그래서 소개팅이나 면접처럼 누군가를 처음 마주하는 자리에서 남기는 첫인상이 좋아서, 상대가 나를 실제보다 더 좋게 기억했을 확률이 커요. 어린 시절 집안 분위기가 지금 성격의 바탕이 되었을 가능성도 높아요.',
+      월주:'부모와 청년기, 그리고 직업운의 흐름을 상징해요. 그래서 첫 직장에서 유독 잘 맞았던 업무 방식이 따로 있었을 가능성이 크고, 20대 초반에 내린 진로 선택이 지금 커리어의 방향을 정하는 데 실제로 큰 영향을 줬을 확률이 높아요.',
+      일주:'나 자신과 배우자운, 삶의 중심이 되는 자리예요. 그래서 연인과 다툰 뒤 먼저 화해를 시도하는 쪽일 가능성이 크고, 결혼 상대를 고를 때도 조건보다 특정 기준 하나(성격이나 가치관 등)를 나도 모르게 가장 중요하게 따졌을 확률이 높아요.',
+      시주:'자녀와 노년기, 그리고 말년의 결실을 상징해요. 그래서 자녀에게는 잔소리보다 믿고 지켜보는 쪽의 부모가 되었을 가능성이 크고, 은퇴 후에도 곁을 지켜주는 사람이 많아 외롭지 않은 노후를 보낼 확률이 높아요.'
+    };
+    const ELEM_TRAIT_SHORT={
+      목:'성장과 도전을 즐기는',
+      화:'표현력이 강하고 열정적인',
+      토:'안정적이고 신뢰감 있는',
+      금:'결단력 있고 원칙적인',
+      수:'유연하고 통찰력 있는'
+    };
+    const BRANCH_TRAIT={
+      자:'민첩하고 눈치가 빠른',
+      축:'우직하고 성실한',
+      인:'당당하고 카리스마 있는',
+      묘:'섬세하고 온화한',
+      진:'스케일이 크고 자신감 있는',
+      사:'차분하고 통찰력 있는',
+      오:'활동적이고 자유로운',
+      미:'다정하고 감수성이 풍부한',
+      신:'재치있고 순발력 있는',
+      유:'부지런하고 계획적인',
+      술:'의리있고 정직한',
+      해:'너그럽고 낙천적인'
+    };
+
+    const hourOptions = [
+      {label:'모름',val:null},
+      {label:'자시 (23:00~01:00)',val:0},{label:'축시 (01:00~03:00)',val:1},
+      {label:'인시 (03:00~05:00)',val:2},{label:'묘시 (05:00~07:00)',val:3},
+      {label:'진시 (07:00~09:00)',val:4},{label:'사시 (09:00~11:00)',val:5},
+      {label:'오시 (11:00~13:00)',val:6},{label:'미시 (13:00~15:00)',val:7},
+      {label:'신시 (15:00~17:00)',val:8},{label:'유시 (17:00~19:00)',val:9},
+      {label:'술시 (19:00~21:00)',val:10},{label:'해시 (21:00~23:00)',val:11}
+    ];
+
+    const SL = (window.solarLunar && window.solarLunar.default) ? window.solarLunar.default : window.solarLunar;
+
+    let calendarType = 'solar';
+    const calRow = document.getElementById('s-calendar-row');
+    const leapField = document.getElementById('s-leap-field');
+    const leapCheck = document.getElementById('s-leap-check');
+    ['양력','음력'].forEach(label=>{
+      const el = document.createElement('button'); el.className='pill'+(label==='양력'?' selected':'');
+      el.textContent = label;
+      el.addEventListener('click', ()=>{
+        calendarType = label==='양력' ? 'solar' : 'lunar';
+        [...calRow.children].forEach(c=>c.classList.remove('selected'));
+        el.classList.add('selected');
+        leapField.style.display = calendarType==='lunar' ? 'block' : 'none';
+        if(calendarType!=='lunar') leapCheck.checked = false;
+        refreshDays();
+      });
+      calRow.appendChild(el);
+    });
+
+    const yearSel = document.getElementById('s-year');
+    const nowYear = new Date().getFullYear();
+    for(let y=nowYear; y>=1930; y--) yearSel.appendChild(new Option(y+'년', y));
+    const monthSel = document.getElementById('s-month');
+    for(let m=1;m<=12;m++) monthSel.appendChild(new Option(m+'월', m));
+    const daySel = document.getElementById('s-day');
+    function refreshDays(){
+      const y = parseInt(yearSel.value), m = parseInt(monthSel.value);
+      let maxD;
+      if(calendarType==='lunar' && SL){
+        maxD = leapCheck.checked ? (SL.leapDays(y) || 29) : SL.monthDays(y, m);
+        if(maxD < 0) maxD = 30;
+      } else {
+        maxD = new Date(y, m, 0).getDate();
+      }
+      const prev = daySel.value;
+      daySel.innerHTML = '';
+      for(let d=1; d<=maxD; d++) daySel.appendChild(new Option(d+'일', d));
+      if(prev && parseInt(prev) <= maxD) daySel.value = prev;
+    }
+    yearSel.addEventListener('change', refreshDays);
+    monthSel.addEventListener('change', refreshDays);
+    leapCheck.addEventListener('change', refreshDays);
+    refreshDays();
+
+    const hourSel = document.getElementById('s-hour');
+    hourOptions.forEach(h=> hourSel.appendChild(new Option(h.label, h.val===null?'':h.val)));
+
+    function getYearPillar(year){
+      const stemIdx = ((year-4)%10+10)%10, branchIdx = ((year-4)%12+12)%12;
+      return {stemIdx, branchIdx};
+    }
+    function getMonthPillar(year, month, yearStemIdx){
+      const branchIdx = (month+1)%12;
+      const startMap = [2,4,6,8,0];
+      const startStem = startMap[yearStemIdx%5];
+      const offset = ((branchIdx - 2) + 12)%12;
+      const stemIdx = (startStem + offset)%10;
+      return {stemIdx, branchIdx};
+    }
+    function getDayPillar(year, month, day){
+      const epoch = Date.UTC(2000,0,1);
+      const target = Date.UTC(year, month-1, day);
+      const diffDays = Math.round((target - epoch)/86400000);
+      const idx60 = ((diffDays + 54)%60 + 60)%60;
+      return {stemIdx: idx60%10, branchIdx: idx60%12};
+    }
+    function getHourPillar(hourSlot, dayStemIdx){
+      if(hourSlot===null || hourSlot===undefined) return null;
+      const startMap=[0,2,4,6,8];
+      const startStem = startMap[dayStemIdx%5];
+      const stemIdx = (startStem + hourSlot)%10;
+      return {stemIdx, branchIdx: hourSlot};
+    }
+    function pillarLabel(p){ return `${STEMS[p.stemIdx]}${BRANCHES[p.branchIdx]}`; }
+    function pillarHanja(p){ return `${STEM_HANJA[p.stemIdx]}${BRANCH_HANJA[p.branchIdx]}`; }
+
+    document.getElementById('s-draw-btn').addEventListener('click', ()=>{
+      let year = parseInt(yearSel.value), month = parseInt(monthSel.value), day = parseInt(daySel.value);
+      const hourValRaw = hourSel.value;
+      const hourSlot = hourValRaw===''? null : parseInt(hourValRaw);
+
+      if(calendarType==='lunar'){
+        if(!SL){ alert('음력 변환 라이브러리를 불러오지 못했어요. 잠시 후 다시 시도해주세요.'); return; }
+        const isLeap = leapCheck.checked;
+        const converted = SL.lunar2solar(year, month, day, isLeap);
+        if(converted === -1){ alert('입력한 음력 날짜를 확인해주세요. (윤달 여부가 맞는지도 확인해주세요)'); return; }
+        year = converted.cYear; month = converted.cMonth; day = converted.cDay;
+      }
+
+      const yearP = getYearPillar(year);
+      const monthP = getMonthPillar(year, month, yearP.stemIdx);
+      const dayP = getDayPillar(year, month, day);
+      const hourP = getHourPillar(hourSlot, dayP.stemIdx);
+
+      const pillars = [
+        {label:'년주', p:yearP}, {label:'월주', p:monthP}, {label:'일주', p:dayP}
+      ];
+      if(hourP) pillars.push({label:'시주', p:hourP});
+      else pillars.push({label:'시주', p:null});
+
+      const counts = {목:0,화:0,토:0,금:0,수:0};
+      pillars.forEach(item=>{
+        if(!item.p) return;
+        counts[STEM_ELEM[item.p.stemIdx]]++;
+        counts[BRANCH_ELEM[item.p.branchIdx]]++;
+      });
+      let dominant='목', weakest='목', maxC=-1, minC=999;
+      Object.keys(counts).forEach(k=>{
+        if(counts[k]>maxC){ maxC=counts[k]; dominant=k; }
+        if(counts[k]<minC){ minC=counts[k]; weakest=k; }
+      });
+
+      const grid = document.getElementById('s-pillars');
+      grid.innerHTML = pillars.map(item=>{
+        if(!item.p){
+          return `<div class="pillar-box"><div class="plabel">${item.label}</div><div class="pname">모름</div></div>`;
+        }
+        return `<div class="pillar-box"><div class="plabel">${item.label}</div><div class="pname">${pillarLabel(item.p)}</div></div>`;
+      }).join('');
+
+      const rolesWrap = document.getElementById('s-pillar-roles');
+      rolesWrap.innerHTML = pillars.map(item=>{
+        if(!item.p){
+          return `<div class="pillar-detail"><div class="pd-title">${item.label}</div><p>태어난 시간을 몰라 시주는 계산할 수 없어요. 시간을 알면 자녀·말년운까지 더 정확하게 볼 수 있어요.</p></div>`;
+        }
+        const se = STEM_ELEM[item.p.stemIdx], be = BRANCH_ELEM[item.p.branchIdx];
+        const elemText = se===be
+          ? `${ELEM_TRAIT_SHORT[se]} ${ELEM_FULL[se]} 기운이 강하게 자리하고 있어요.`
+          : `${ELEM_TRAIT_SHORT[se]} ${ELEM_FULL[se]} 기운과 ${ELEM_TRAIT_SHORT[be]} ${ELEM_FULL[be]} 기운이 함께 자리하고 있어요.`;
+        return `<div class="pillar-detail"><div class="pd-title">${item.label} · ${pillarLabel(item.p)}</div><p>${elemText} ${PILLAR_ROLE[item.label]}</p></div>`;
+      }).join('');
+
+      const dayStemName = STEMS[dayP.stemIdx];
+      const dayBranchName = BRANCHES[dayP.branchIdx];
+      const dayAnimal = zodiacOrder[dayP.branchIdx];
+      document.getElementById('s-daymaster').innerHTML =
+        `<b style="color:var(--gold);">당신의 일간, ${dayStemName}</b><br>${DAY_MASTER[dayStemName]}<br><br>`+
+        `여기에 태어난 날의 지지가 ${dayBranchName}(${dayAnimal}띠에 해당)이라, ${BRANCH_TRAIT[dayBranchName]} 면모도 함께 지니고 있어요. 이 둘이 합쳐진 ${dayStemName}${dayBranchName} 일주는, 겉으로 드러나는 인상과 실제 성격이 이 두 가지 기운으로 함께 설명되는 당신만의 조합이에요.`;
+
+      const maxCount = Math.max(1, ...Object.values(counts));
+      const ohengWrap = document.getElementById('s-oheng');
+      ohengWrap.innerHTML = Object.keys(counts).map(k=>`
+        <div class="oheng-row">
+          <div class="oheng-label" style="color:${ELEM_COLOR[k]}">${ELEM_FULL[k]}</div>
+          <div class="oheng-track"><div class="oheng-fill" style="width:${(counts[k]/maxCount)*100}%;background:${ELEM_COLOR[k]};"></div></div>
+          <div class="oheng-count">${counts[k]}</div>
+        </div>`).join('');
+
+      const levelText = (c)=> c>=2 ? '강하게' : (c===1 ? '적당히' : '거의 없이');
+      const levelLines = Object.keys(counts).map(k=>`${ELEM_FULL[k]} 기운이 ${levelText(counts[k])} 자리하고 있어요.`).join(' ');
+
+      let relationNote = '';
+      if(dominant!==weakest){
+        if(GENERATES[dominant]===weakest){
+          relationNote = `${ELEM_FULL[dominant]} 기운이 ${ELEM_FULL[weakest]} 기운을 자연스럽게 북돋아주는 관계라, 강점을 살리다 보면 약점도 함께 채워질 가능성이 높아요. ${ELEM_PRACTICE[dominant]}을 계속하다 보면, 그 과정에서 자연스럽게 ${ELEM_FULL[weakest]} 쪽 경험도 함께 쌓이는 식이에요.`;
+        } else if(GENERATES[weakest]===dominant){
+          relationNote = `${ELEM_FULL[weakest]} 기운이 ${ELEM_FULL[dominant]} 기운의 뿌리가 되어주는 관계예요. 부족한 ${ELEM_FULL[weakest]} 기운을 챙기면, 지금 강점인 ${ELEM_FULL[dominant]} 기운이 더 오래 지속될 수 있어요. 평소 소홀했던 ${ELEM_PRACTICE[weakest]}을 조금만 신경 써도, 지금 잘하고 있는 일의 힘이 훨씬 오래 유지될 거예요.`;
+        } else if(OVERCOMES[dominant]===weakest){
+          relationNote = `${ELEM_FULL[dominant]} 기운이 ${ELEM_FULL[weakest]} 기운을 억누르는 관계라, 강점이 오히려 부족한 부분을 더 약하게 만들 수 있어요. 밀어붙이는 힘이 강한 만큼 스스로도 모르게 ${ELEM_PRACTICE[weakest]}을 자꾸 뒤로 미루게 될 수 있으니, 의식적으로 챙겨주는 게 좋아요.`;
+        } else if(OVERCOMES[weakest]===dominant){
+          relationNote = `${ELEM_FULL[weakest]} 기운이 ${ELEM_FULL[dominant]} 기운을 견제하는 관계예요. 지금은 잘 억제되고 있지만, ${ELEM_FULL[weakest]} 기운이 커지면 균형이 흔들릴 수 있으니, ${ELEM_PRACTICE[dominant]}을 꾸준히 이어가면서 균형을 지켜주는 게 좋아요.`;
+        }
+      }
+
+      document.getElementById('s-reading').innerHTML =
+        `<p style="margin:0 0 14px 0;">당신의 사주에는 <b style="color:var(--gold);">${ELEM_FULL[dominant]}</b> 기운이 가장 강해요. ${ELEM_FLAVOR[dominant]}</p>`+
+        `<p style="margin:0 0 14px 0;">반면 <b style="color:var(--gold);">${ELEM_FULL[weakest]}</b> 기운은 상대적으로 약한 편이에요. 다섯 기운의 전체적인 분포를 보면, ${levelLines}</p>`+
+        (relationNote ? `<p style="margin:0;">${relationNote}</p>` : '');
+
+      document.getElementById('s-color-swatch').style.background = ELEM_HEX[weakest];
+      document.getElementById('s-color-name').textContent = ELEM_SUGGEST_COLOR[weakest];
+      document.getElementById('s-item').textContent = ELEM_ITEM[weakest];
+
+      document.getElementById('s-result').classList.add('show');
+    });
+    document.getElementById('s-reset-btn').addEventListener('click', ()=>{
+      document.getElementById('s-result').classList.remove('show');
+    });
+  })();
+
+  /* ================= 별자리운세 모듈 ================= */
+  (function(){
+    const STAR_SIGNS = [
+      {name:'물병자리',symbol:'♒',from:[1,20],to:[2,18]},
+      {name:'물고기자리',symbol:'♓',from:[2,19],to:[3,20]},
+      {name:'양자리',symbol:'♈',from:[3,21],to:[4,19]},
+      {name:'황소자리',symbol:'♉',from:[4,20],to:[5,20]},
+      {name:'쌍둥이자리',symbol:'♊',from:[5,21],to:[6,21]},
+      {name:'게자리',symbol:'♋',from:[6,22],to:[7,22]},
+      {name:'사자자리',symbol:'♌',from:[7,23],to:[8,22]},
+      {name:'처녀자리',symbol:'♍',from:[8,23],to:[9,22]},
+      {name:'천칭자리',symbol:'♎',from:[9,23],to:[10,23]},
+      {name:'전갈자리',symbol:'♏',from:[10,24],to:[11,22]},
+      {name:'사수자리',symbol:'♐',from:[11,23],to:[12,21]},
+      {name:'염소자리',symbol:'♑',from:[12,22],to:[1,19]}
+    ];
+    const STAR_FLAVOR = {
+      물병자리:['독창적인 아이디어가 오늘을 특별하게 만들어요','자유로운 발상이 막힌 문제를 풀어줘요'],
+      물고기자리:['섬세한 감수성이 좋은 인연을 알아봐요','상상력이 오늘의 영감이 되어줘요'],
+      양자리:['거침없는 추진력이 하루를 이끌어요','새로운 도전에 몸이 먼저 움직이는 날이에요'],
+      황소자리:['꾸준한 태도가 신뢰를 쌓아줘요','편안함을 찾는 감각이 오늘의 강점이에요'],
+      쌍둥이자리:['재치있는 말솜씨가 분위기를 살려줘요','호기심이 새로운 정보를 물어다 줘요'],
+      게자리:['따뜻한 마음이 주변을 감싸안아요','가족·친구와의 시간이 힘이 되어줘요'],
+      사자자리:['자신감이 오늘의 무대를 밝혀줘요','주목받을 기회가 자연스럽게 찾아와요'],
+      처녀자리:['꼼꼼한 점검이 실수를 막아줘요','정돈된 계획이 하루를 순조롭게 해줘요'],
+      천칭자리:['균형 잡힌 시선이 갈등을 풀어줘요','조화로운 태도가 좋은 관계를 만들어요'],
+      전갈자리:['깊은 통찰이 진심을 알아채요','집중력이 중요한 순간에 빛을 발해요'],
+      사수자리:['모험심이 새로운 경험을 불러와요','긍정적인 에너지가 주변에 퍼져나가요'],
+      염소자리:['책임감이 오늘의 신뢰를 만들어요','묵묵한 노력이 결실을 향해 다가가요']
+    };
+    const STAR_PERSONALITY = {
+      물병자리:'독창적이고 자유로운 영혼의 소유자예요. 남들과 다른 시각으로 세상을 바라보며, 틀에 얽매이는 걸 답답해해요.',
+      물고기자리:'감수성이 풍부하고 상상력이 뛰어나요. 공감 능력이 좋아 다른 사람의 감정을 잘 헤아리는 편이에요.',
+      양자리:'열정적이고 도전적인 성격으로, 생각보다 행동이 앞서는 편이에요. 승부욕이 강해서 목표가 생기면 거침없이 밀어붙여요.',
+      황소자리:'안정감을 중시하고 끈기가 강한 성격이에요. 한번 정한 것은 꾸준히 지켜나가는 뚝심이 있어요.',
+      쌍둥이자리:'호기심이 많고 재치있는 성격으로, 다양한 주제에 관심을 가져요. 말솜씨가 좋아 대화를 즐겁게 이끌어요.',
+      게자리:'정이 많고 가족적인 성격으로, 가까운 사람을 세심하게 챙겨요. 감정이 풍부해서 공감 능력이 뛰어나요.',
+      사자자리:'자신감 넘치고 카리스마 있는 성격이에요. 주목받는 걸 좋아하고, 관대하게 베푸는 리더십이 있어요.',
+      처녀자리:'꼼꼼하고 분석적인 성격으로, 완벽을 추구하는 편이에요. 실용적인 판단력이 뛰어나 일처리가 깔끔해요.',
+      천칭자리:'균형 감각이 뛰어나고 사교적인 성격이에요. 조화를 중요하게 여겨서 갈등 상황을 능숙하게 중재해요.',
+      전갈자리:'깊이 있고 통찰력이 강한 성격이에요. 겉으로 드러내지 않지만 한번 마음먹은 건 끝까지 파고드는 집중력이 있어요.',
+      사수자리:'자유롭고 모험을 즐기는 성격이에요. 낙천적이고 개방적이라 새로운 경험을 두려워하지 않아요.',
+      염소자리:'책임감이 강하고 현실적인 성격이에요. 목표를 향해 묵묵히 나아가는 인내심이 큰 강점이에요.'
+    };
+    const STAR_LOVE = {
+      물병자리:['독특한 매력이 상대의 호기심을 자극해요','자유로운 분위기가 관계를 편안하게 만들어요'],
+      물고기자리:['섬세한 공감이 마음을 사로잡아요','로맨틱한 분위기가 관계를 깊게 해요'],
+      양자리:['적극적인 대시가 좋은 결과로 이어져요','솔직한 표현이 매력 포인트가 돼요'],
+      황소자리:['한결같은 태도가 신뢰를 쌓아가요','편안한 데이트가 좋은 인상을 남겨요'],
+      쌍둥이자리:['재치있는 대화가 분위기를 살려요','다양한 화제가 관계에 활력을 줘요'],
+      게자리:['따뜻한 배려가 마음을 녹여요','가까운 사람과의 시간이 힘이 돼요'],
+      사자자리:['당당한 매력이 시선을 끌어요','자신감 있는 모습이 좋은 인상을 남겨요'],
+      처녀자리:['세심한 배려가 마음을 전해요','꼼꼼한 준비가 좋은 반응을 얻어요'],
+      천칭자리:['균형 잡힌 태도가 호감을 얻어요','조화로운 분위기가 관계를 편안하게 해요'],
+      전갈자리:['깊은 눈빛이 상대를 끌어당겨요','진지한 대화가 관계를 깊게 만들어요'],
+      사수자리:['긍정적인 에너지가 매력으로 다가가요','즉흥적인 만남이 즐거움을 더해요'],
+      염소자리:['책임감 있는 모습이 신뢰를 줘요','묵묵한 진심이 결국 전해지는 날이에요']
+    };
+    const STAR_MONEY = {
+      물병자리:['독창적인 아이디어가 부수입으로 이어져요','틀에서 벗어난 시도가 이득이 될 수 있어요'],
+      물고기자리:['직감을 믿어보면 좋은 결과가 따라와요','충동적인 지출만 조심하면 무난해요'],
+      양자리:['과감한 결정이 좋은 기회로 이어져요','성급한 투자는 한 번 더 생각해보세요'],
+      황소자리:['꾸준한 저축이 결실을 맺는 흐름이에요','안정적인 선택이 유리하게 작용해요'],
+      쌍둥이자리:['여러 정보를 비교해보면 이득이에요','새로운 정보가 재정에 도움이 돼요'],
+      게자리:['가족을 위한 지출이 만족을 줘요','알뜰한 관리가 안정감을 더해요'],
+      사자자리:['자신감 있는 협상이 유리하게 작용해요','베푸는 만큼 좋은 순환으로 돌아와요'],
+      처녀자리:['꼼꼼한 가계부 관리가 빛을 발해요','세부적인 계획이 손해를 막아줘요'],
+      천칭자리:['균형 잡힌 소비가 만족도를 높여요','신중한 비교가 좋은 선택으로 이어져요'],
+      전갈자리:['깊이 있는 분석이 의외의 이득을 줘요','서두르지 않는 판단이 유리해요'],
+      사수자리:['새로운 기회에 마음이 끌리는 하루예요','과감한 시도가 좋은 결과로 이어질 수 있어요'],
+      염소자리:['계획적인 소비가 안정감을 줘요','묵묵한 노력이 결실로 이어져요']
+    };
+    function findStarSign(month, day){
+      for(const s of STAR_SIGNS){
+        const [fm,fd]=s.from, [tm,td]=s.to;
+        if(fm<=tm){
+          if((month>fm || (month===fm && day>=fd)) && (month<tm || (month===tm && day<=td))) return s;
+        } else {
+          if((month===fm && day>=fd) || (month===tm && day<=td)) return s;
+        }
+      }
+      return STAR_SIGNS[0];
+    }
+
+    const zMonth = document.getElementById('z-month');
+    for(let m=1;m<=12;m++) zMonth.appendChild(new Option(m+'월', m));
+    const zDay = document.getElementById('z-day');
+    function refreshZDays(){
+      const m = parseInt(zMonth.value)||1;
+      const maxD = new Date(2024, m, 0).getDate();
+      const prev = zDay.value;
+      zDay.innerHTML='';
+      for(let d=1; d<=maxD; d++) zDay.appendChild(new Option(d+'일', d));
+      if(prev && parseInt(prev)<=maxD) zDay.value = prev;
+    }
+    zMonth.addEventListener('change', refreshZDays);
+    refreshZDays();
+
+    document.getElementById('z-draw-btn').addEventListener('click', ()=>{
+      const month = parseInt(zMonth.value), day = parseInt(zDay.value);
+      const sign = findStarSign(month, day);
+      const seedStr = todayKey()+'|star|'+sign.name;
+      const rand = mulberry32(hashStr(seedStr));
+      const flavors = STAR_FLAVOR[sign.name];
+      const phrase = flavors[Math.floor(rand()*flavors.length)];
+      const love = STAR_LOVE[sign.name][Math.floor(rand()*STAR_LOVE[sign.name].length)];
+      const money = STAR_MONEY[sign.name][Math.floor(rand()*STAR_MONEY[sign.name].length)];
+      const colorIdx = Math.floor(rand()*luckyColors.length);
+      const itemIdx = Math.floor(rand()*luckyItems.length);
+      const missionIdx = Math.floor(rand()*missions.length);
+      const number = 1+Math.floor(rand()*45);
+
+      document.getElementById('z-symbol').textContent = sign.symbol;
+      document.getElementById('z-name').textContent = sign.name;
+      document.getElementById('z-personality').innerHTML = `<b style="color:var(--gold);">${sign.name}는 이런 성격이에요</b><br>${STAR_PERSONALITY[sign.name]}`;
+      document.getElementById('z-reading').innerHTML =
+        `<b style="color:var(--gold);">총운</b> · ${phrase}.<br><br>`+
+        `<b style="color:var(--gold);">애정운</b> · ${love}.<br><br>`+
+        `<b style="color:var(--gold);">금전운</b> · ${money}.`;
+      document.getElementById('z-color-swatch').style.background = luckyColors[colorIdx].hex;
+      document.getElementById('z-color-name').textContent = luckyColors[colorIdx].name;
+      document.getElementById('z-number').textContent = number;
+      document.getElementById('z-item').textContent = luckyItems[itemIdx];
+      document.getElementById('z-mission').textContent = missions[missionIdx];
+      document.getElementById('z-result').classList.add('show');
+    });
+    document.getElementById('z-reset-btn').addEventListener('click', ()=>{
+      document.getElementById('z-result').classList.remove('show');
+    });
+  })();
+
+  /* ================= 궁합 모듈 ================= */
+  (function(){
+    const TRINE_GROUPS = [['쥐','용','원숭이'],['소','뱀','닭'],['호랑이','말','개'],['토끼','양','돼지']];
+    const SIX_HARMONY = [['쥐','소'],['호랑이','돼지'],['토끼','개'],['용','닭'],['뱀','원숭이'],['말','양']];
+    const CLASH = [['쥐','말'],['소','양'],['호랑이','원숭이'],['토끼','닭'],['용','개'],['뱀','돼지']];
+    const BLOOD_TABLE = {'A-A':75,'A-AB':70,'A-B':60,'A-O':85,'AB-AB':80,'AB-B':65,'AB-O':60,'B-B':70,'B-O':80,'O-O':75};
+    const BLOOD_PAIR = {
+      'A-A':'서로의 신중함을 이해해줘서 편안한 케미를 자랑해요.',
+      'A-AB':'A형의 꼼꼼함과 AB형의 다재다능함이 서로를 보완해줘요.',
+      'A-B':'서로 다른 속도가 답답할 수 있지만, 그만큼 배울 점도 많은 조합이에요.',
+      'A-O':'A형의 신중함과 O형의 추진력이 만나 균형 잡힌 케미를 만들어요.',
+      'AB-AB':'둘 다 다면적인 성격이라 서로를 깊이 이해하지만, 예측불가한 조합이기도 해요.',
+      'AB-B':'AB형의 유연함과 B형의 자유로움이 잘 어우러지는 조합이에요.',
+      'AB-O':'AB형의 독특한 시선과 O형의 사교성이 재미있는 케미를 만들어요.',
+      'B-B':'서로의 자유로움을 인정해줘서 부담 없는 편안한 관계가 돼요.',
+      'B-O':'B형의 개성과 O형의 리더십이 만나 활기찬 조합을 이뤄요.',
+      'O-O':'둘 다 적극적이라 시너지가 크지만, 주도권 다툼은 조심해야 해요.'
+    };
+    const LETTER_MEANING = {
+      E:'외향적인 에너지', I:'내향적인 에너지',
+      N:'직관적인 사고방식', S:'현실적인 사고방식',
+      T:'논리적인 판단', F:'감정적인 공감',
+      J:'계획적인 태도', P:'즉흥적인 태도'
+    };
+
+    function zodiacRelation(a,b){
+      if(a===b) return {score:80, desc:`같은 ${a}띠는 서로를 가장 잘 이해하는 친구 같은 궁합이에요.`};
+      for(const g of TRINE_GROUPS) if(g.includes(a)&&g.includes(b)) return {score:95, desc:`${a}띠와 ${b}띠는 삼합으로 만나 찰떡궁합을 이뤄요.`};
+      for(const p of SIX_HARMONY) if((p[0]===a&&p[1]===b)||(p[0]===b&&p[1]===a)) return {score:88, desc:`${a}띠와 ${b}띠는 육합으로 자연스럽게 잘 어울려요.`};
+      for(const p of CLASH) if((p[0]===a&&p[1]===b)||(p[0]===b&&p[1]===a)) return {score:42, desc:`${a}띠와 ${b}띠는 상충 관계라 서로 다름을 인정하는 노력이 필요해요.`};
+      return {score:65, desc:`${a}띠와 ${b}띠는 무난하게 어울리는 편이에요.`};
+    }
+    function bloodScore(a,b){ const key=[a,b].sort().join('-'); return BLOOD_TABLE[key]; }
+    function bloodDesc(a,b){ const key=[a,b].sort().join('-'); return BLOOD_PAIR[key]; }
+    function mbtiScore(a,b){ let shared=0; for(let i=0;i<4;i++) if(a[i]===b[i]) shared++; return 50+shared*12.5; }
+    function mbtiNarrative(a,b){
+      let sameParts=[], diffParts=[];
+      for(let i=0;i<4;i++){
+        if(a[i]===b[i]) sameParts.push(LETTER_MEANING[a[i]]);
+        else diffParts.push([LETTER_MEANING[a[i]], LETTER_MEANING[b[i]]]);
+      }
+      let text = '';
+      if(sameParts.length>0) text += `두 사람은 ${sameParts.join(', ')} 면에서 잘 통해요. `;
+      if(diffParts.length>0){
+        const d = diffParts[0];
+        text += `다만 한쪽은 ${d[0]}, 다른 한쪽은 ${d[1]}에 가까워서 이 부분은 서로 다름을 이해해주는 노력이 필요해요.`;
+      } else {
+        text += '네 가지 성향이 모두 비슷해서 손발이 잘 맞는 편이에요.';
+      }
+      return text;
+    }
+
+    const cABlood=document.getElementById('c-a-blood'), cBBlood=document.getElementById('c-b-blood');
+    const cAZodiac=document.getElementById('c-a-zodiac'), cBZodiac=document.getElementById('c-b-zodiac');
+    const cAMbti=document.getElementById('c-a-mbti'), cBMbti=document.getElementById('c-b-mbti');
+    [cABlood,cBBlood].forEach(sel=>{ sel.appendChild(new Option('혈액형 선택','')); bloodTypes.forEach(b=>sel.appendChild(new Option(b+'형', b))); });
+    [cAZodiac,cBZodiac].forEach(sel=>{ sel.appendChild(new Option('띠 선택','')); zodiacOrder.forEach(z=>sel.appendChild(new Option(zodiacData[z].emoji+' '+z, z))); });
+    [cAMbti,cBMbti].forEach(sel=>{ sel.appendChild(new Option('MBTI 선택','')); mbtiList.forEach(m=>sel.appendChild(new Option(m,m))); });
+
+    document.getElementById('c-draw-btn').addEventListener('click', ()=>{
+      const aBlood=cABlood.value, bBlood=cBBlood.value, aZ=cAZodiac.value, bZ=cBZodiac.value, aM=cAMbti.value, bM=cBMbti.value;
+      if(!aBlood||!bBlood||!aZ||!bZ||!aM||!bM){ alert('나와 상대의 정보를 모두 선택해주세요.'); return; }
+
+      const zRel = zodiacRelation(aZ,bZ);
+      const bScore = bloodScore(aBlood,bBlood);
+      const mScore = mbtiScore(aM,bM);
+      const overall = Math.round((zRel.score+bScore+mScore)/3);
+
+      let comment;
+      if(overall>=85) comment='천생연분 궁합이에요! 서로가 서로를 완성해주는 사이예요.';
+      else if(overall>=70) comment='아주 좋은 궁합이에요. 함께라면 즐거운 일이 많을 거예요.';
+      else if(overall>=55) comment='무난한 궁합이에요. 서로 조금만 배려하면 훨씬 좋아질 관계예요.';
+      else comment='다름이 매력인 궁합이에요. 서로의 차이를 이해하려는 노력이 필요해요.';
+
+      document.getElementById('c-score').textContent = overall+'%';
+      document.getElementById('c-comment').textContent = comment;
+      document.getElementById('c-zodiac-pct').textContent = Math.round(zRel.score)+'%';
+      document.getElementById('c-blood-pct').textContent = Math.round(bScore)+'%';
+      document.getElementById('c-mbti-pct').textContent = Math.round(mScore)+'%';
+      document.getElementById('c-zodiac-bar').style.width = zRel.score+'%';
+      document.getElementById('c-blood-bar').style.width = bScore+'%';
+      document.getElementById('c-mbti-bar').style.width = mScore+'%';
+      document.getElementById('c-reading').innerHTML =
+        `<b style="color:var(--gold);">띠 궁합</b> · ${zRel.desc}<br><br>`+
+        `<b style="color:var(--gold);">혈액형 궁합</b> · ${bloodDesc(aBlood,bBlood)}<br><br>`+
+        `<b style="color:var(--gold);">MBTI 궁합</b> · ${mbtiNarrative(aM,bM)}`;
+      document.getElementById('c-result').classList.add('show');
+    });
+    document.getElementById('c-reset-btn').addEventListener('click', ()=>{
+      document.getElementById('c-result').classList.remove('show');
+    });
+  })();
+
+})();
+</script>
+
+</body>
+</html>

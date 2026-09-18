@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { motion, useInView, animate } from "framer-motion";
-import { Clock, GraduationCap, BookOpen, Footprints, Brain } from "lucide-react";
+import { Clock, GraduationCap, BookOpen, Footprints, Brain, Trophy } from "lucide-react";
 
 function AnimatedStat({ start = 0, end, format }: { start?: number, end: number, format: (val: number) => string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -60,6 +60,13 @@ export function Profile() {
     },
     { 
       start: 0,
+      end: 49, 
+      format: (val: number) => Math.round(val).toString(),
+      label: "만 49세, 골프 티칭 프로 라이선스 취득",
+      icon: Trophy
+    },
+    { 
+      start: 0,
       end: 13989, // 3 * 3600 + 53 * 60 + 9
       format: (val: number) => {
         const total = Math.round(val);
@@ -68,7 +75,7 @@ export function Profile() {
         const s = total % 60;
         return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
       },
-      label: "2024 춘천마라톤 풀코스 완주 기록",
+      label: "만 53세, 2024 춘천마라톤 풀코스 완주 기록",
       icon: Footprints
     },
   ];
@@ -139,14 +146,14 @@ export function Profile() {
             className="flex flex-col h-full space-y-4 lg:space-y-0 lg:pt-[54px] lg:justify-between"
           >
             {stats.map((stat, idx) => (
-              <div key={idx} className="bg-[#111111] p-6 lg:p-8 rounded-2xl border border-white/5 hover:border-brand/40 transition-all group relative overflow-hidden flex items-center justify-between">
+              <div key={idx} className="bg-[#111111] p-4 lg:py-4 lg:px-6 rounded-2xl border border-white/5 hover:border-brand/40 transition-all group relative overflow-hidden flex items-center justify-between">
                 <div className="z-10 relative">
                   <AnimatedStat start={stat.start} end={stat.end} format={stat.format} />
                   <div className="text-sm lg:text-base text-gray-400 font-medium break-keep leading-snug">{stat.label}</div>
                 </div>
                 {/* Right Icon - Orange Line Art */}
                 <div className="z-0 opacity-20 group-hover:opacity-60 transition-opacity absolute right-4 lg:right-8 top-1/2 -translate-y-1/2">
-                  <stat.icon size={80} className="text-brand stroke-1" />
+                  <stat.icon size={70} className="text-brand stroke-1" />
                 </div>
               </div>
             ))}
