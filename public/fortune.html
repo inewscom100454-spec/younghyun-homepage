@@ -1177,7 +1177,7 @@
       const dayAnimal = zodiacOrder[dayP.branchIdx];
       document.getElementById('s-daymaster').innerHTML =
         `<b style="color:var(--gold);">당신의 일간, ${dayStemName}</b><br>${DAY_MASTER[dayStemName]}<br><br>`+
-        `여기에 태어난 날의 지지가 ${dayBranchName}(${dayAnimal}띠에 해당)이라, ${BRANCH_TRAIT[dayBranchName]} 면모도 함께 지니고 있어요. 이 둘이 합쳐진 ${dayStemName}${dayBranchName} 일주는, 겉으로 드러나는 인상과 실제 성격이 이 두 가지 기운으로 함께 설명되는 당신만의 조합이에요.`;
+        `여기에 태어난 날의 지지가 ${dayBranchName}(${dayAnimal}의 기운)이라, ${BRANCH_TRAIT[dayBranchName]} 면모도 함께 지니고 있어요. (참고로 실제 태어난 해의 띠는 년주 기준으로 정해지고, 이 지지는 그것과는 별개로 일주에서만 나타나는 기운이에요.) 이 둘이 합쳐진 ${dayStemName}${dayBranchName} 일주는, 겉으로 드러나는 인상과 실제 성격이 이 두 가지 기운으로 함께 설명되는 당신만의 조합이에요.`;
 
       const maxCount = Math.max(1, ...Object.values(counts));
       const ohengWrap = document.getElementById('s-oheng');
