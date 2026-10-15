@@ -69,6 +69,9 @@ export function Hero() {
           </h1>
           
           <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-gray-300 max-w-4xl mx-auto font-light leading-relaxed break-keep">
+            <span className="block text-white font-medium mb-1.5 sm:mb-2">
+              2015년 국내 최초 고려대학교 AI온라인마케팅 최고위과정 개설 및 운영
+            </span>
             30년 광고기획자, 15년 온라인 마케팅 강사, AI 전문가, 베스트셀러 저자,<br className="hidden md:block"/>
             세계 유일 실행부여가 이영현 교수와 함께 당신의 삶과 비즈니스를 새롭게 시작하세요.
           </p>
