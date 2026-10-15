@@ -46,11 +46,11 @@ export function Chatbot() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, x: 20 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            exit={{ opacity: 0, scale: 0.8, x: 20 }}
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ duration: 0.3 }}
-            className="fixed top-1/2 -translate-y-1/2 right-4 sm:right-[90px] w-[calc(100vw-32px)] sm:w-[340px] md:w-[380px] max-h-[85vh] bg-black border border-brand/30 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.8),0_0_30px_rgba(255,140,0,0.15)] z-[60] overflow-hidden flex flex-col"
+            className="fixed bottom-24 right-4 sm:bottom-28 sm:right-6 w-[calc(100vw-32px)] sm:w-[340px] md:w-[380px] max-h-[75vh] sm:max-h-[85vh] bg-black border border-brand/30 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.8),0_0_30px_rgba(255,140,0,0.15)] z-[60] overflow-hidden flex flex-col"
           >
             {/* Header */}
             <div className="bg-[#111] p-4 flex justify-between items-center border-b border-brand/20">
@@ -203,7 +203,7 @@ export function Chatbot() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-1/2 right-4 sm:right-6 -translate-y-1/2 flex items-center justify-center z-50 group origin-right"
+        className="fixed bottom-6 right-4 sm:bottom-8 sm:right-6 flex items-center justify-center z-50 group origin-bottom-right"
         aria-label="챗봇 열기"
       >
         <AnimatePresence mode="wait">
@@ -225,7 +225,7 @@ export function Chatbot() {
               animate={{ opacity: 1, rotate: 0, scale: 1 }}
               exit={{ opacity: 0, rotate: -90, scale: 0.5 }}
               transition={{ duration: 0.2 }}
-              className="w-[85px] h-[85px] bg-brand rounded-full overflow-hidden border-2 border-brand animate-neon-pulse"
+              className="w-16 h-16 sm:w-20 sm:h-20 bg-brand rounded-full overflow-hidden border-2 border-brand animate-neon-pulse shadow-[0_0_20px_rgba(255,140,0,0.4)]"
             >
               <img src="/audrey_avatar.png" alt="챗봇 상담사" className="w-full h-full object-cover" />
             </motion.div>
