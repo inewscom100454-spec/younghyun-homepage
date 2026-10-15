@@ -106,9 +106,6 @@ export function Chatbot() {
                     transition={{ duration: 0.3 }}
                     className="flex flex-col gap-2.5 mt-1 pl-11"
                   >
-                    <a href="/fortune" className={btnClass} onClick={() => setIsOpen(false)}>
-                      🔮 운칠보삼 (운세) 보러가기
-                    </a>
                     <a href="https://forms.gle/LGVPoq4YEhBarsQP9" target="_blank" rel="noopener noreferrer" className={btnClass}>
                       🚀 특강 및 협업 제안
                     </a>

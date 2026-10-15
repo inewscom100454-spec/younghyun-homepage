@@ -23,7 +23,6 @@ export function Navbar() {
     { label: "주요 저서", href: "/#books" },
     { label: "강의 현황", href: "/#class" },
     { label: "비즈니스", href: "/#business" },
-    { label: "운칠보삼 (운세)", href: "/fortune" },
   ];
 
   return (
@@ -51,7 +50,7 @@ export function Navbar() {
               <Link
                 key={link.label}
                 href={link.href}
-                className={`flex items-center gap-1 transition-colors text-sm font-medium tracking-wide whitespace-nowrap ${link.label === '운칠보삼 (운세)' ? 'text-brand font-bold' : 'text-gray-300 hover:text-brand'}`}
+                className={`flex items-center gap-1 transition-colors text-sm font-medium tracking-wide whitespace-nowrap text-gray-300 hover:text-brand`}
               >
                 {link.label}
               </Link>
@@ -98,7 +97,7 @@ export function Navbar() {
               <Link
                 key={link.label}
                 href={link.href}
-                className={`flex items-center gap-2 px-3 py-3 rounded-md text-lg font-medium border-b border-white/5 ${link.label === '운칠보삼 (운세)' ? 'text-brand font-bold' : 'text-gray-200 hover:text-brand'}`}
+                className={`flex items-center gap-2 px-3 py-3 rounded-md text-lg font-medium border-b border-white/5 text-gray-200 hover:text-brand`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.label}
