@@ -21,10 +21,10 @@ export function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-xl sm:text-2xl font-bold text-brand uppercase tracking-widest mb-4">Story & History</h2>
-            <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-none break-keep mb-[26px]">
+            <span className="block text-xl sm:text-2xl font-bold text-brand uppercase tracking-widest mb-4">Story & History</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-none break-keep mb-[26px]">
               이영현 교수의 <span className="text-brand">교육 및 사업 관련 주요 이력</span>
-            </h3>
+            </h2>
             <p className="text-xl sm:text-2xl text-gray-300 font-medium leading-[1.3] break-keep">
               IQ 84, 가난하고 공부 못하는 산골 소년의 성공 스토리로<br />
               <span className="text-white font-bold block mt-[10px]">당신의 삶과 귀사에 터닝포인트가 되어 드리겠습니다.</span>
@@ -42,7 +42,7 @@ export function Contact() {
             transition={{ duration: 0.8 }}
             className="w-full bg-[#111] p-8 md:p-12 lg:p-16 rounded-[2.5rem] border border-white/5 shadow-2xl"
           >
-            <h6 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-12 text-center tracking-wide flex flex-wrap justify-center items-center gap-x-3 gap-y-2">
+            <div className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-12 text-center tracking-wide flex flex-wrap justify-center items-center gap-x-3 gap-y-2">
               <span>이영현</span>
               <span className="text-brand font-light text-base sm:text-xl">|</span>
               <span>LEE YOUNG-HYUN</span>
@@ -50,7 +50,7 @@ export function Contact() {
               <span>010 3767 2191</span>
               <span className="text-brand font-light text-base sm:text-xl hidden md:inline">|</span>
               <span className="text-brand">newsad1@naver.com</span>
-            </h6>
+            </div>
             
             <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
               
@@ -69,17 +69,17 @@ export function Contact() {
 
                 {/* Extra Activities (No Box) */}
                 <div className="flex-1 flex flex-col gap-4 text-base sm:text-[17px] leading-normal break-keep text-gray-300 font-medium border-t border-white/10 pt-6">
-                  <h5 className="text-2xl font-bold text-white mb-4 flex items-center gap-3"><Mic className="w-7 h-7 text-brand" />특강 / 심사위원 / 언론</h5>
+                  <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-3"><Mic className="w-7 h-7 text-brand" />특강 / 심사위원 / 언론</h3>
                   <div>
-                    <h6 className="font-bold text-brand mb-1">▶ 특강</h6>
+                    <h4 className="font-bold text-brand mb-1">▶ 특강</h4>
                     <p className="text-gray-300">고위공직자, 서울대학교, 고려대학교, 전국 상공회의소 최고경영자과정 및 기업체, 지자체 특강 다수</p>
                   </div>
                   <div>
-                    <h6 className="font-bold text-brand mb-1">▶ 심사위원</h6>
+                    <h4 className="font-bold text-brand mb-1">▶ 심사위원</h4>
                     <p className="text-gray-300">중소벤처기업부, 인천국제공항공사, 남북교류협력지원협회 등</p>
                   </div>
                   <div className="mt-auto pt-4">
-                    <h6 className="font-bold text-brand mb-1">▶ 언론</h6>
+                    <h4 className="font-bold text-brand mb-1">▶ 언론</h4>
                     <ul className="text-gray-300 space-y-0.5">
                       <li>- 월간식당 전문가 인터뷰</li>
                       <li>- 창업&프랜차이즈 전문가 인터뷰</li>
@@ -97,7 +97,7 @@ export function Contact() {
                   
                   {/* 학력 */}
                   <div>
-                    <h5 className="text-2xl font-bold text-white mb-4 flex items-center gap-3"><GraduationCap className="w-7 h-7 text-brand" />학력 및 교원</h5>
+                    <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-3"><GraduationCap className="w-7 h-7 text-brand" />학력 및 교원</h3>
                     <ul className="space-y-2 text-base sm:text-[17px] leading-snug break-keep">
                       <li><span className="text-brand mr-2">▶</span><strong className="text-white">동두천 고등학교</strong> 졸업</li>
                       <li><span className="text-brand mr-2">▶</span><strong className="text-white">아주대학교 마케팅MBA</strong> 석사 졸업</li>
@@ -110,7 +110,7 @@ export function Contact() {
 
                   {/* 수상 및 사회활동 */}
                   <div>
-                    <h5 className="text-2xl font-bold text-white mb-4 flex items-center gap-3"><Medal className="w-7 h-7 text-brand" />수상 및 사회활동</h5>
+                    <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-3"><Medal className="w-7 h-7 text-brand" />수상 및 사회활동</h3>
                     <ul className="space-y-2 text-base sm:text-[17px] leading-snug break-keep text-gray-300">
                       <li>- 2024년 동두천시 명예시장</li>
                       <li>- 2018~2021 사|노원구소상공인회 이사장</li>
@@ -123,7 +123,7 @@ export function Contact() {
 
                   {/* 교육 */}
                   <div className="flex flex-col h-full">
-                    <h5 className="text-2xl font-bold text-white mb-4 flex items-center gap-3"><BookOpen className="w-7 h-7 text-brand" />주요 교육 과정 운영 현황</h5>
+                    <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-3"><BookOpen className="w-7 h-7 text-brand" />주요 교육 과정 운영 현황</h3>
                     <ul className="flex flex-col flex-1 justify-between gap-2 text-base sm:text-[17px] leading-snug break-keep">
                       <li className="text-white font-bold mb-1.5">현) 고려대학교 미래교육원 AI온라인마케팅과정 운영 중</li>
                       <li className="pl-4 text-gray-300">- 최고위과정 (1기~19기)</li>
@@ -142,7 +142,7 @@ export function Contact() {
 
                   {/* 사업 */}
                   <div className="flex flex-col h-full">
-                    <h5 className="text-2xl font-bold text-white mb-4 flex items-center gap-3"><Briefcase className="w-7 h-7 text-brand" />사업 경영 이력</h5>
+                    <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-3"><Briefcase className="w-7 h-7 text-brand" />사업 경영 이력</h3>
                     <ul className="flex flex-col flex-1 justify-between gap-2 text-base sm:text-[17px] leading-snug break-keep">
                       <li>현) <strong className="text-white">한국온라인마케팅연구원</strong> 원장</li>
                       <li>현) <strong className="text-white">뉴스컴</strong> (광고기획 30년 경영) 대표</li>

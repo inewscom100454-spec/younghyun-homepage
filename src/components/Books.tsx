@@ -31,8 +31,8 @@ export function Books() {
     <section id="books" className="py-24 bg-black">
        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-2xl font-bold text-brand uppercase tracking-widest mb-4">Books</h2>
-          <h3 className="text-4xl font-black text-white">주요 저서</h3>
+          <span className="block text-2xl font-bold text-brand uppercase tracking-widest mb-4">Books</span>
+          <h2 className="text-4xl font-black text-white">주요 저서</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -63,7 +63,7 @@ export function Books() {
                 </div>
                 
                 <span className="text-brand font-bold text-sm mb-2">{book.year}</span>
-                <h4 className="text-2xl font-bold text-white mb-8">{book.title}</h4>
+                <h3 className="text-2xl font-bold text-white mb-8">{book.title}</h3>
                 
                 <a 
                   href={book.link} 

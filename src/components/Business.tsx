@@ -49,8 +49,8 @@ export function Business() {
     <section id="business" className="py-24 bg-black">
        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-2xl font-bold text-brand uppercase tracking-widest mb-4">Business</h2>
-          <h3 className="text-4xl font-black text-white">비즈니스 포트폴리오</h3>
+          <span className="block text-2xl font-bold text-brand uppercase tracking-widest mb-4">Business</span>
+          <h2 className="text-4xl font-black text-white">비즈니스 포트폴리오</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
@@ -76,7 +76,7 @@ export function Business() {
                 </div>
               )}
               
-              <h4 className="text-lg lg:text-xl font-bold text-white mb-3 group-hover:text-brand transition-colors break-keep">{biz.name}</h4>
+              <h3 className="text-lg lg:text-xl font-bold text-white mb-3 group-hover:text-brand transition-colors break-keep">{biz.name}</h3>
               <p className="text-sm lg:text-[15px] text-gray-400 font-medium leading-relaxed break-keep">{biz.desc}</p>
             </motion.a>
           ))}

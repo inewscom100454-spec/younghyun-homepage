@@ -7,8 +7,8 @@ export function Class() {
     <section id="class" className="py-24 bg-[#0a0a0a]">
        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-2xl font-bold text-brand uppercase tracking-widest mb-4">AI Marketing Class</h2>
-          <h3 className="text-4xl font-black text-white leading-tight">고려대학교 AI온라인마케팅과정</h3>
+          <span className="block text-2xl font-bold text-brand uppercase tracking-widest mb-4">AI Marketing Class</span>
+          <h2 className="text-4xl font-black text-white leading-tight">고려대학교 AI온라인마케팅과정</h2>
           <div className="mt-6 text-gray-400 max-w-3xl mx-auto space-y-2 leading-relaxed">
             <p>2015년 국내 최초로 개설된 대체불가, 명불허전의 과정!</p>
             <p>전국팔도에서 1,000명이 넘는 CEO와 전문가가 500건 이상의 성공사례를 남긴 곳!</p>
@@ -57,7 +57,7 @@ export function Class() {
               
               <div className="space-y-8 mt-8 pb-4">
                 <div>
-                  <h4 className="text-gray-400 text-sm lg:text-base font-medium mb-3">고려대학교 AI온라인마케팅과정</h4>
+                  <h3 className="text-gray-400 text-sm lg:text-base font-medium mb-3">고려대학교 AI온라인마케팅과정</h3>
                   <ul className="space-y-4 text-white text-lg md:text-xl font-bold">
                     <li>
                       <a href="https://blog.naver.com/newsad1/221323052889" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 group transition-transform">

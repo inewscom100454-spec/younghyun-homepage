@@ -23,6 +23,7 @@ export function Navbar() {
     { label: "주요 저서", href: "/#books" },
     { label: "강의 현황", href: "/#class" },
     { label: "비즈니스", href: "/#business" },
+    { label: "FAQ", href: "/#faq" },
   ];
 
   return (

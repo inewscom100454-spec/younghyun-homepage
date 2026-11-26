@@ -48,14 +48,14 @@ export function Hero() {
           transition={{ duration: 0.8 }}
           className="space-y-6"
         >
-          <motion.div 
+          <motion.p 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.8 }}
             className="inline-block px-5 py-2 rounded-full border border-brand/30 bg-brand/10 text-brand text-sm sm:text-base font-semibold tracking-widest uppercase mb-4"
           >
             세계 유일 실행부여가 이영현 교수
-          </motion.div>
+          </motion.p>
           
           <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tight leading-none">
             <span className="block text-brand mb-3 sm:mb-5 text-xl sm:text-3xl md:text-4xl tracking-normal break-keep">'꿈 깨! 실행 없이는 일장춘몽!!'</span>

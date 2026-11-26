@@ -92,11 +92,11 @@ export function Profile() {
             transition={{ duration: 0.8 }}
             className="flex flex-col"
           >
-            <h2 className="text-2xl font-bold text-brand uppercase tracking-widest mb-4">WHO'S LEE?</h2>
-            <h3 className="text-[32px] sm:text-[36px] lg:text-[44px] font-black text-white mb-8 leading-[1.3] break-keep tracking-tighter">
+            <span className="block text-2xl font-bold text-brand uppercase tracking-widest mb-4">WHO'S LEE?</span>
+            <h2 className="text-[32px] sm:text-[36px] lg:text-[44px] font-black text-white mb-8 leading-[1.3] break-keep tracking-tighter">
               세상을 바꿀 원대한 꿈이 있어도<br />
               <span className="text-gray-500">실행 없이는 일장춘몽이다!</span>
-            </h3>
+            </h2>
             
             <div className="space-y-6 text-gray-300 text-[15px] sm:text-base leading-relaxed font-light break-keep pb-4">
               <p>
